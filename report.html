@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports</title>
+  <meta name="description" content="A beginner-friendly educational site about cybersecurity and cybercrime with quizzes, tips, Indian cyber laws, and resources." />
+  <style>
+:root {
+      --accent: #2dddfb;
+      --accent-2: #f4a261;
+      --panel: rgba(255, 255, 255, 0.1);
+      --panel-2: rgba(255, 255, 255, 0.2);
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia;
+      background-color: #9CAF88;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: saturate(140%) blur(8px);
+      background: #0a2342;
+      border-bottom: 1px solid #f8f7f8;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-content: space-between;
+      padding: 12px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      color: white;
+    }
+
+    .logo {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      color: white;
+    }
+
+    .menu {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      padding: 10px 12px;
+      border-radius: 12px;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .menu a:hover {
+      background: var(--panel-2);
+      color: #f4a261;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      border: 1px solid rgba(246, 246, 246, 0.35);
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: var(--panel);
+      color: white;
+      cursor: pointer;
+     transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: var(--panel-2);
+    }
+
+    .primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border: none;
+    }
+
+    .primary:hover {
+      filter: brightness(1.1);
+    }
+    .main-content { padding: 40px 20px; }
+
+    /* ---------- HERO SECTION WITH SAFETY + EMERGENCY ---------- */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 40px;
+      align-items: start;
+      padding: 40px;
+    }
+
+    .hero-right {
+      padding-left: 28px;
+      border-left: 4px solid #2B7A78; /* safety line color */
+    }
+
+    .emergency {
+      margin-top: 24px;
+      padding: 18px;
+      border-radius: 6px;
+      background: #fff7f7;
+      border-left: 6px solid #E94B35; /* emergency red */
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: #0a2342;
+      color: #f1f1f1;
+      padding: 40px 20px 10px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .footer-container h3 {
+      margin-bottom: 15px;
+      font-size: 18px;
+      border-left: 4px solid #f4a261;
+      padding-left: 8px;
+    }
+
+    .footer-container p,
+    .footer-container a,
+    .footer-container li {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #ddd;
+      text-decoration: none;
+    }
+
+    .footer-container a:hover {
+      color: #f4a261;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 8px;
+    }
+
+    .footer-social a {
+      margin-right: 12px;
+      font-size: 18px;
+      display: inline-block;
+      transition: transform 0.3s;
+    }
+
+    .footer-social a:hover {
+      transform: scale(1.2);
+      color: #f4a261;
+    }
+
+    .newsletter input[type="email"] {
+      padding: 10px;
+      width: 70%;
+      border: none;
+      border-radius: 4px 0 0 4px;
+    }
+
+    .newsletter button {
+      padding: 10px 15px;
+      border: none;
+      background: #f4a261;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 0 4px 4px 0;
+      transition: 0.3s;
+    }
+
+    .newsletter button:hover {
+      background: #e76f51;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid #444;
+      margin-top: 30px;
+      padding: 10px 0;
+      font-size: 13px;
+    }
+        .d-container {
+            max-width: 1000px;
+            margin: auto;
+            background: #FFFFFF; /* Updated container background */
+            padding: 25px 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #1A237E; /* Updated h1 color */
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #283593; /* Updated h2 color */
+            border-bottom: 3px solid #FFA07A; /* Updated h2 border color */
+            padding-bottom: 8px;
+            margin-top: 40px;
+            font-size: 1.8em;
+        }
+        h3 {
+            color: #4A4A6A; /* Updated h3 color */
+            font-size: 1.4em;
+            margin-top: 25px;
+        }
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        .intro-box {
+            background-color: #FFF8E1; /* Updated intro-box background */
+            color: #E65100; /* Updated intro-box text color */
+            border: 1px solid #FFC07A; /* Updated intro-box border color */
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .chart-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .chart-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: #FDF6EC; /* Updated chart item background */
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            width: 300px;
+        }
+        .chart-title {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .donut-chart {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .donut-chart svg {
+            width: 100%;
+            height: 100%;
+        }
+        .donut-chart circle {
+            fill: none;
+            stroke-width: 32;
+        }
+        .donut-chart-segment {
+            transition: stroke-dasharray .5s ease;
+        }
+        .legend {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            width: 100%;
+        }
+        .legend li {
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        .legend-color-box {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+ .back-to-top {
+      position: fixed; bottom: 30px; right: 30px;
+      background: #0a2342; color: white;
+      width: 50px; height: 50px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      opacity: 0; transition: opacity 0.3s; z-index: 100;
+    }
+    .back-to-top.visible { opacity: 1; }
+    @media (max-width: 768px) {
+      .nav { flex-direction: column; align-items: flex-start; }
+      .menu { margin-top: 15px; flex-wrap: wrap; }
+      .crime-grid { grid-template-columns: 1fr; }
+    }
+    .quiz-button {
+      color: #3A3A3A;
+      background-color: #F5F0E6;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 6px;
+    }
+
+    </style>
+</head>
+<body>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <div class="brand" aria-label="CyberShield home">
+        <div class="logo" aria-hidden="true">🔐</div>
+        <a href="index.html"><span style="color: #2dddfb;">Learn2Secure</span></a>
+
+      </div>
+      <nav class="menu" aria-label="Section links">
+        <a href="cybersec.html">Cybersecurity</a>
+        <a href="cybercri.html">Cybercrimes</a>
+        <a href="laws.html">Indian Laws</a>
+        <a href="quiz.html">Quizes</a>
+        <a href="report.html">Report</a>
+      </nav>
+      <div class="actions">
+        <button id="toggleTheme" class="btn" aria-pressed="false" title="Toggle dark/light">🌙</button>
+      </div>
+    </div>
+  </header>
+
+<div class="d-container">
+    <h1>Cybercrime and Cybersecurity Awareness Survey Report 📊</h1>
+
+    <p style="text-align: center;">**Date of Report:** September 15, 2025</p>
+
+    <hr>
+    
+    <h2>Objectives</h2>
+    <p>The primary objective of this survey was to assess the level of awareness and understanding of cybercrime and cybersecurity practices among a targeted demographic. The survey aimed to gather data on how individuals perceive cyber threats, their knowledge of safe online behavior, and their past experiences with cyberattacks. The findings will be used to identify knowledge gaps and inform future educational initiatives.</p>
+
+    <hr>
+    
+    <h2>Methodology</h2>
+    <p>This report is based on the responses from an online survey conducted with 217 participants. The survey was divided into two main sections: one focusing on cybercrime awareness and the other on cybersecurity practices. The data presented herein is a direct representation of the responses collected.</p>
+
+    <hr>
+    
+    <h2>Survey Responses</h2>
+    
+    <h3>Demographics</h3>
+    
+
+
+    
+    <h3>Cybercrime Awareness</h3>
+    <div class="chart-container">
+        <div class="chart-item">
+            <h3 class="chart-title">1. Have you ever heard about cybercrime?</h3>
+            <div class="donut-chart">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#f0f0f0" stroke-width="20"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#E65100" stroke-width="20" stroke-dasharray="301.99 251.327" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FFC07A" stroke-width="20" stroke-dasharray="6.28 251.327" stroke-dashoffset="-301.99" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FF8C66" stroke-width="20" stroke-dasharray="15.71 251.327" stroke-dashoffset="-308.27" transform="rotate(-90 50 50)"></circle>
+                </svg>
+            </div>
+            <ul class="legend">
+                <li><span class="legend-color-box" style="background-color: #E65100;"></span> Yes: 95.9%</li>
+                <li><span class="legend-color-box" style="background-color: #FFC07A;"></span> No: 2.0%</li>
+                <li><span class="legend-color-box" style="background-color: #FF8C66;"></span> Not sure: 5.0%</li>
+            </ul>
+        </div>
+        <div class="chart-item">
+            <h3 class="chart-title">2. Which of the following do you think is an example of cybercrime?</h3>
+            <div class="donut-chart">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#f0f0f0" stroke-width="20"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#283593" stroke-width="20" stroke-dasharray="262.06 251.327" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#81A3A9" stroke-width="20" stroke-dasharray="30.48 251.327" stroke-dashoffset="-262.06" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#4A4A6A" stroke-width="20" stroke-dasharray="6.28 251.327" stroke-dashoffset="-292.54" transform="rotate(-90 50 50)"></circle>
+                </svg>
+            </div>
+            <ul class="legend">
+                <li><span class="legend-color-box" style="background-color: #283593;"></span> All of the above: 83.4%</li>
+                <li><span class="legend-color-box" style="background-color: #81A3A9;"></span> Online banking fraud: 9.7%</li>
+                <li><span class="legend-color-box" style="background-color: #4A4A6A;"></span> Hacking of accounts: 2.0%</li>
+            </ul>
+        </div>
+        <div class="chart-item">
+            <h3 class="chart-title">3. If you receive a fraud call asking for OTP, what should you do?</h3>
+            <div class="donut-chart">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#f0f0f0" stroke-width="20"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#E65100" stroke-width="20" stroke-dasharray="291.56 251.327" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FFC07A" stroke-width="20" stroke-dasharray="23.25 251.327" stroke-dashoffset="-291.56" transform="rotate(-90 50 50)"></circle>
+                </svg>
+            </div>
+            <ul class="legend">
+                <li><span class="legend-color-box" style="background-color: #E65100;"></span> Disconnect & Report: 92.6%</li>
+                <li><span class="legend-color-box" style="background-color: #FFC07A;"></span> Ignore and forget: 7.4%</li>
+            </ul>
+        </div>
+        <div class="chart-item">
+            <h3 class="chart-title">4. Which device do you think is most at risk of cybercrime?</h3>
+            <div class="donut-chart">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#f0f0f0" stroke-width="20"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#283593" stroke-width="20" stroke-dasharray="252.01 251.327" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#81A3A9" stroke-width="20" stroke-dasharray="54.98 251.327" stroke-dashoffset="-252.01" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FFC07A" stroke-width="20" stroke-dasharray="6.28 251.327" stroke-dashoffset="-306.99" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FF8C66" stroke-width="20" stroke-dasharray="15.71 251.327" stroke-dashoffset="-313.27" transform="rotate(-90 50 50)"></circle>
+                </svg>
+            </div>
+            <ul class="legend">
+                <li><span class="legend-color-box" style="background-color: #283593;"></span> All of the above: 80.2%</li>
+                <li><span class="legend-color-box" style="background-color: #81A3A9;"></span> Mobile phone: 17.5%</li>
+                <li><span class="legend-color-box" style="background-color: #FFC07A;"></span> Laptop/Computer: 2.0%</li>
+                <li><span class="legend-color-box" style="background-color: #FF8C66;"></span> Tablet: 5.0%</li>
+            </ul>
+        </div>
+        <div class="chart-item">
+            <h3 class="chart-title">5. Which of these is an online financial fraud?</h3>
+            <div class="donut-chart">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#f0f0f0" stroke-width="20"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#283593" stroke-width="20" stroke-dasharray="44.93 251.327" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#81A3A9" stroke-width="20" stroke-dasharray="44.93 251.327" stroke-dashoffset="-44.93" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#4A4A6A" stroke-width="20" stroke-dasharray="6.28 251.327" stroke-dashoffset="-89.86" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FFC07A" stroke-width="20" stroke-dasharray="218.66 251.327" stroke-dashoffset="-96.14" transform="rotate(-90 50 50)"></circle>
+                </svg>
+            </div>
+            <ul class="legend">
+                <li><span class="legend-color-box" style="background-color: #283593;"></span> UPI phishing: 14.3%</li>
+                <li><span class="legend-color-box" style="background-color: #81A3A9;"></span> Fake loan app scam: 14.3%</li>
+                <li><span class="legend-color-box" style="background-color: #4A4A6A;"></span> SIM swap: 2.0%</li>
+                <li><span class="legend-color-box" style="background-color: #FFC07A;"></span> All of the above: 69.6%</li>
+            </ul>
+        </div>
+        <div class="chart-item">
+            <h3 class="chart-title">6. What is the most common way hackers steal personal information?</h3>
+            <div class="donut-chart">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#f0f0f0" stroke-width="20"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#E65100" stroke-width="20" stroke-dasharray="280.99 251.327" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FFC07A" stroke-width="20" stroke-dasharray="23.25 251.327" stroke-dashoffset="-280.99" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FF8C66" stroke-width="20" stroke-dasharray="6.28 251.327" stroke-dashoffset="-304.24" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#81A3A9" stroke-width="20" stroke-dasharray="15.71 251.327" stroke-dashoffset="-310.52" transform="rotate(-90 50 50)"></circle>
+                </svg>
+            </div>
+            <ul class="legend">
+                <li><span class="legend-color-box" style="background-color: #E65100;"></span> Phishing emails/messages: 89.4%</li>
+                <li><span class="legend-color-box" style="background-color: #FFC07A;"></span> None of the above: 7.4%</li>
+                <li><span class="legend-color-box" style="background-color: #FF8C66;"></span> Face-to-face asking: 2.0%</li>
+                <li><span class="legend-color-box" style="background-color: #81A3A9;"></span> Printed advertisements: 5.0%</li>
+            </ul>
+        </div>
+        <div class="chart-item">
+            <h3 class="chart-title">7. Which of these is an online safety tip?</h3>
+            <div class="donut-chart">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#f0f0f0" stroke-width="20"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#E65100" stroke-width="20" stroke-dasharray="307.3 251.327" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FFC07A" stroke-width="20" stroke-dasharray="6.28 251.327" stroke-dashoffset="-307.3" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FF8C66" stroke-width="20" stroke-dasharray="6.28 251.327" stroke-dashoffset="-313.58" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#81A3A9" stroke-width="20" stroke-dasharray="6.28 251.327" stroke-dashoffset="-319.86" transform="rotate(-90 50 50)"></circle>
+                </svg>
+            </div>
+            <ul class="legend">
+                <li><span class="legend-color-box" style="background-color: #E65100;"></span> Using strong passwords: 97.7%</li>
+                <li><span class="legend-color-box" style="background-color: #FFC07A;"></span> Sharing OTP with friends: 2.0%</li>
+                <li><span class="legend-color-box" style="background-color: #FF8C66;"></span> Clicking all links: 2.0%</li>
+                <li><span class="legend-color-box" style="background-color: #81A3A9;"></span> Using same password everywhere: 2.0%</li>
+            </ul>
+        </div>
+        <div class="chart-item">
+            <h3 class="chart-title">8. Which of these messages is most likely a scam?</h3>
+            <div class="donut-chart">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#f0f0f0" stroke-width="20"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#E65100" stroke-width="20" stroke-dasharray="293.75 251.327" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FFC07A" stroke-width="20" stroke-dasharray="6.28 251.327" stroke-dashoffset="-293.75" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FF8C66" stroke-width="20" stroke-dasharray="6.28 251.327" stroke-dashoffset="-300.03" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#81A3A9" stroke-width="20" stroke-dasharray="15.71 251.327" stroke-dashoffset="-306.31" transform="rotate(-90 50 50)"></circle>
+                </svg>
+            </div>
+            <ul class="legend">
+                <li><span class="legend-color-box" style="background-color: #E65100;"></span> Congratulations! You won ₹10,00,000...: 93.5%</li>
+                <li><span class="legend-color-box" style="background-color: #FFC07A;"></span> "Your Electricity bill is due tomorrow...": 2.0%</li>
+                <li><span class="legend-color-box" style="background-color: #FF8C66;"></span> "Your package will be delivered today...": 2.0%</li>
+                <li><span class="legend-color-box" style="background-color: #81A3A9;"></span> "Your friend sent you a photo on WhatsApp.": 5.0%</li>
+            </ul>
+        </div>
+        <div class="chart-item">
+            <h3 class="chart-title">9. The official website of National Cybercrime Reporting Portal (NCRP) is:</h3>
+            <div class="donut-chart">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#f0f0f0" stroke-width="20"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#1A237E" stroke-width="20" stroke-dasharray="298.45 251.327" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#283593" stroke-width="20" stroke-dasharray="6.28 251.327" stroke-dashoffset="-298.45" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#E65100" stroke-width="20" stroke-dasharray="6.28 251.327" stroke-dashoffset="-304.73" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FFC07A" stroke-width="20" stroke-dasharray="15.71 251.327" stroke-dashoffset="-311.01" transform="rotate(-90 50 50)"></circle>
+                </svg>
+            </div>
+            <ul class="legend">
+                <li><span class="legend-color-box" style="background-color: #1A237E;"></span> www.cybercrime.gov.in: 94.9%</li>
+                <li><span class="legend-color-box" style="background-color: #283593;"></span> www.ncrp.in: 2.0%</li>
+                <li><span class="legend-color-box" style="background-color: #E65100;"></span> www.cyberalert.org: 2.0%</li>
+                <li><span class="legend-color-box" style="background-color: #FFC07A;"></span> www.stopcybercrime.com: 5.0%</li>
+            </ul>
+        </div>
+        <div class="chart-item">
+            <h3 class="chart-title">10. What should be your first step if you become a victim of cyber fraud?</h3>
+            <div class="donut-chart">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#f0f0f0" stroke-width="20"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#E65100" stroke-width="20" stroke-dasharray="308.27 251.327" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FFC07A" stroke-width="20" stroke-dasharray="15.71 251.327" stroke-dashoffset="-308.27" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FF8C66" stroke-width="20" stroke-dasharray="15.71 251.327" stroke-dashoffset="-323.98" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#81A3A9" stroke-width="20" stroke-dasharray="15.71 251.327" stroke-dashoffset="-339.69" transform="rotate(-90 50 50)"></circle>
+                </svg>
+            </div>
+            <ul class="legend">
+                <li><span class="legend-color-box" style="background-color: #E65100;"></span> Report to cybercrime.gov.in or call 1930: 98.2%</li>
+                <li><span class="legend-color-box" style="background-color: #FFC07A;"></span> Panic and delete account: 5.0%</li>
+                <li><span class="legend-color-box" style="background-color: #FF8C66;"></span> Tell only friends: 5.0%</li>
+                <li><span class="legend-color-box" style="background-color: #81A3A9;"></span> Do nothing: 5.0%</li>
+            </ul>
+        </div>
+    </div>
+    
+    <hr>
+    
+    <h2>Cybersecurity Practices</h2>
+    <div class="chart-container">
+        <div class="chart-item">
+            <h3 class="chart-title">1. How familiar are you with the term "cybersecurity"?</h3>
+            <div class="donut-chart">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#f0f0f0" stroke-width="20"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#283593" stroke-width="20" stroke-dasharray="150.41 251.327" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#81A3A9" stroke-width="20" stroke-dasharray="105.5 251.327" stroke-dashoffset="-150.41" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#4A4A6A" stroke-width="20" stroke-dasharray="47.79 251.327" stroke-dashoffset="-255.91" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FFC07A" stroke-width="20" stroke-dasharray="6.28 251.327" stroke-dashoffset="-303.7" transform="rotate(-90 50 50)"></circle>
+                </svg>
+            </div>
+            <ul class="legend">
+                <li><span class="legend-color-box" style="background-color: #283593;"></span> Very Familiar: 47.9%</li>
+                <li><span class="legend-color-box" style="background-color: #81A3A9;"></span> Somewhat Familiar: 33.6%</li>
+                <li><span class="legend-color-box" style="background-color: #4A4A6A;"></span> Heard of it but not sure: 15.2%</li>
+                <li><span class="legend-color-box" style="background-color: #FFC07A;"></span> Not familiar at all: 2.0%</li>
+            </ul>
+        </div>
+        <div class="chart-item">
+            <h3 class="chart-title">2. Do you believe cyberattacks are a serious threat?</h3>
+            <div class="donut-chart">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#f0f0f0" stroke-width="20"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#E65100" stroke-width="20" stroke-dasharray="292.82 251.327" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FFC07A" stroke-width="20" stroke-dasharray="15.71 251.327" stroke-dashoffset="-292.82" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FF8C66" stroke-width="20" stroke-dasharray="6.28 251.327" stroke-dashoffset="-308.53" transform="rotate(-90 50 50)"></circle>
+                </svg>
+            </div>
+            <ul class="legend">
+                <li><span class="legend-color-box" style="background-color: #E65100;"></span> Yes: 93.1%</li>
+                <li><span class="legend-color-box" style="background-color: #FFC07A;"></span> No: 5.0%</li>
+                <li><span class="legend-color-box" style="background-color: #FF8C66;"></span> Not sure: 2.0%</li>
+            </ul>
+        </div>
+        <div class="chart-item">
+            <h3 class="chart-title">3. Do you know what phishing emails or scam messages look like?</h3>
+            <div class="donut-chart">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#f0f0f0" stroke-width="20"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#283593" stroke-width="20" stroke-dasharray="128.81 251.327" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#81A3A9" stroke-width="20" stroke-dasharray="136.03 251.327" stroke-dashoffset="-128.81" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#4A4A6A" stroke-width="20" stroke-dasharray="15.71 251.327" stroke-dashoffset="-264.84" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FFC07A" stroke-width="20" stroke-dasharray="6.28 251.327" stroke-dashoffset="-280.55" transform="rotate(-90 50 50)"></circle>
+                </svg>
+            </div>
+            <ul class="legend">
+                <li><span class="legend-color-box" style="background-color: #283593;"></span> Yes, I can easily identify them: 41.0%</li>
+                <li><span class="legend-color-box" style="background-color: #81A3A9;"></span> I have some idea but not fully sure: 43.3%</li>
+                <li><span class="legend-color-box" style="background-color: #4A4A6A;"></span> Heard of phishing but don't know what it looks like: 5.0%</li>
+                <li><span class="legend-color-box" style="background-color: #FFC07A;"></span> No, I don't know at all: 2.0%</li>
+            </ul>
+        </div>
+        <div class="chart-item">
+            <h3 class="chart-title">4. How often do you update your passwords?</h3>
+            <div class="donut-chart">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#f0f0f0" stroke-width="20"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#E65100" stroke-width="20" stroke-dasharray="152.09 251.327" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FFC07A" stroke-width="20" stroke-dasharray="63.74 251.327" stroke-dashoffset="-152.09" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FF8C66" stroke-width="20" stroke-dasharray="59.32 251.327" stroke-dashoffset="-215.83" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#81A3A9" stroke-width="20" stroke-dasharray="38.96 251.327" stroke-dashoffset="-275.15" transform="rotate(-90 50 50)"></circle>
+                </svg>
+            </div>
+            <ul class="legend">
+                <li><span class="legend-color-box" style="background-color: #E65100;"></span> Every 3-6 months: 48.4%</li>
+                <li><span class="legend-color-box" style="background-color: #FFC07A;"></span> Rarely/Never: 20.3%</li>
+                <li><span class="legend-color-box" style="background-color: #FF8C66;"></span> Monthly: 18.9%</li>
+                <li><span class="legend-color-box" style="background-color: #81A3A9;"></span> Once a year: 12.4%</li>
+            </ul>
+        </div>
+        <div class="chart-item">
+            <h3 class="chart-title">5. Do you use the same password for multiple accounts?</h3>
+            <div class="donut-chart">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#f0f0f0" stroke-width="20"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#283593" stroke-width="20" stroke-dasharray="134.78 251.327" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#81A3A9" stroke-width="20" stroke-dasharray="146.06 251.327" stroke-dashoffset="-134.78" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#4A4A6A" stroke-width="20" stroke-dasharray="33.31 251.327" stroke-dashoffset="-280.84" transform="rotate(-90 50 50)"></circle>
+                </svg>
+            </div>
+            <ul class="legend">
+                <li><span class="legend-color-box" style="background-color: #283593;"></span> No, I use unique passwords: 42.9%</li>
+                <li><span class="legend-color-box" style="background-color: #81A3A9;"></span> Sometimes: 46.5%</li>
+                <li><span class="legend-color-box" style="background-color: #4A4A6A;"></span> Yes, always: 10.6%</li>
+            </ul>
+        </div>
+        <div class="chart-item">
+            <h3 class="chart-title">6. Do you use antivirus or firewall software on your devices?</h3>
+            <div class="donut-chart">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#f0f0f0" stroke-width="20"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#E65100" stroke-width="20" stroke-dasharray="137.93 251.327" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FFC07A" stroke-width="20" stroke-dasharray="123.64 251.327" stroke-dashoffset="-137.93" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FF8C66" stroke-width="20" stroke-dasharray="53.95 251.327" stroke-dashoffset="-261.57" transform="rotate(-90 50 50)"></circle>
+                </svg>
+            </div>
+            <ul class="legend">
+                <li><span class="legend-color-box" style="background-color: #E65100;"></span> Yes: 43.8%</li>
+                <li><span class="legend-color-box" style="background-color: #FFC07A;"></span> No: 39.2%</li>
+                <li><span class="legend-color-box" style="background-color: #FF8C66;"></span> Not sure: 17.1%</li>
+            </ul>
+        </div>
+        <div class="chart-item">
+            <h3 class="chart-title">7. Have you ever shared sensitive information (password, OTP) over phone/email?</h3>
+            <div class="donut-chart">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#f0f0f0" stroke-width="20"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#E65100" stroke-width="20" stroke-dasharray="18.85 251.327" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#283593" stroke-width="20" stroke-dasharray="276.46 251.327" stroke-dashoffset="-18.85" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FFC07A" stroke-width="20" stroke-dasharray="18.85 251.327" stroke-dashoffset="-295.31" transform="rotate(-90 50 50)"></circle>
+                </svg>
+            </div>
+            <ul class="legend">
+                <li><span class="legend-color-box" style="background-color: #E65100;"></span> Yes: 6.0%</li>
+                <li><span class="legend-color-box" style="background-color: #283593;"></span> No: 88.0%</li>
+                <li><span class="legend-color-box" style="background-color: #FFC07A;"></span> Not sure: 6.0%</li>
+            </ul>
+        </div>
+        <div class="chart-item">
+            <h3 class="chart-title">8. Have you ever been a victim of a cyberattack (hacking, phishing, malware)?</h3>
+            <div class="donut-chart">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#f0f0f0" stroke-width="20"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FFC07A" stroke-width="20" stroke-dasharray="6.28 251.327" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#283593" stroke-width="20" stroke-dasharray="275.25 251.327" stroke-dashoffset="-6.28" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FF8C66" stroke-width="20" stroke-dasharray="6.28 251.327" stroke-dashoffset="-281.53" transform="rotate(-90 50 50)"></circle>
+                </svg>
+            </div>
+            <ul class="legend">
+                <li><span class="legend-color-box" style="background-color: #FFC07A;"></span> Yes: 2.0%</li>
+                <li><span class="legend-color-box" style="background-color: #283593;"></span> No: 87.6%</li>
+                <li><span class="legend-color-box" style="background-color: #FF8C66;"></span> Not sure: 2.0%</li>
+            </ul>
+        </div>
+        <div class="chart-item">
+            <h3 class="chart-title">9. If yes, did you report it?</h3>
+            <div class="donut-chart">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#f0f0f0" stroke-width="20"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#E65100" stroke-width="20" stroke-dasharray="46.18 251.327" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FFC07A" stroke-width="20" stroke-dasharray="45.24 251.327" stroke-dashoffset="-46.18" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#4A4A6A" stroke-width="20" stroke-dasharray="223.75 251.327" stroke-dashoffset="-91.42" transform="rotate(-90 50 50)"></circle>
+                </svg>
+            </div>
+            <ul class="legend">
+                <li><span class="legend-color-box" style="background-color: #E65100;"></span> Yes: 14.7%</li>
+                <li><span class="legend-color-box" style="background-color: #FFC07A;"></span> No: 14.3%</li>
+                <li><span class="legend-color-box" style="background-color: #4A4A6A;"></span> Not applicable: 71.0%</li>
+            </ul>
+        </div>
+        <div class="chart-item">
+            <h3 class="chart-title">10. Do you know whom to contact in case of a cyber incident?</h3>
+            <div class="donut-chart">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#f0f0f0" stroke-width="20"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#283593" stroke-width="20" stroke-dasharray="251.327 251.327" transform="rotate(-90 50 50)"></circle>
+                    <circle cx="50" cy="50" r="40" stroke="#FFC07A" stroke-width="20" stroke-dasharray="65.00 251.327" stroke-dashoffset="-250.0" transform="rotate(-90 50 50)"></circle>
+                </svg>
+            </div>
+            <ul class="legend">
+                <li><span class="legend-color-box" style="background-color: #283593;"></span> Yes: 79.3%</li>
+                <li><span class="legend-color-box" style="background-color: #FFC07A;"></span> No: 20.7%</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>Analysis</h2>
+    <p>The survey results reveal a strong baseline of awareness regarding cybercrime and cybersecurity among participants. The majority of respondents fall within the 18-25 age group and are students, indicating that this demographic has a high level of engagement with digital platforms.</p>
+    
+    <h3>Cybercrime Awareness</h3>
+    <p>A significant majority of respondents, 95.9%, have heard of cybercrime, and 98.2% know the correct first step to take in case of cyber fraud: reporting it to the official portal or a helpline number. Most participants correctly identified phishing emails as the most common method for hackers to steal information, with 89.4% selecting this option. However, there is a small gap in knowledge, with some individuals not being able to identify common examples of cybercrime or financial fraud..</p>
+
+    <h3>Cybersecurity Practices</h3>
+    <p>While the awareness of threats is high, the practices section shows some areas for improvement. A large portion of respondents stated they update their passwords only every 3-6 months (48.4%), while a combined 32.7% do so either once a year or rarely/never. Additionally, nearly half of the participants (46.5%) sometimes use the same password for multiple accounts, and another 10.6% always do. Concerningly, over a third of respondents (39.2%) do not use antivirus or firewall software on their devices.</p>
+
+    <hr>
+    
+    <h2>Conclusion</h2>
+   <p>The survey clearly demonstrates that while the public is generally aware of cybercrime and understands how to react to it, there is a significant opportunity to improve proactive cybersecurity habits. Future educational campaigns should focus on actionable steps, such as encouraging the use of unique passwords, password managers, and antivirus software. By promoting these simple, effective habits, we can help bridge the gap between awareness and practice, leading to a more secure digital community.</p>
+
+    <hr>
+
+    <div id="references">
+        <h3>References</h3>
+        <ul>
+            <li><strong>Cybercrime Reporting:</strong>
+                <ul>
+                    <li><a href="https://cybercrime.gov.in/" target="_blank">National Cybercrime Reporting Portal</a></li>
+                    <li><a href="https://www.cert-in.org.in/" target="_blank">Indian Computer Emergency Response Team (CERT-In)</a></li>
+                </ul>
+            </li>
+            <li><strong>Cybersecurity Awareness & Tips:</strong>
+                <ul>
+                    <li><a href="https://www.rblbank.com/blog/safe-banking/10-cybersecurity-tips-to-stay-safe-online" target="_blank">Cybersecurity Tips from RBL Bank</a></li>
+                    <li><a href="https://www.interpol.int/Crimes/Cybercrime/Be-Cyber-Aware" target="_blank">Be Cyber Aware by Interpol</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="back-to-top" id="backToTop" title="Back to top">↑</div>
+ <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-about">
+        <h3>About Us</h3>
+        <p>We are dedicated to providing quality education resources and tools to help students and educators achieve their goals.</p>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#library">Library</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h3>Contact Info</h3>
+        <p>Email: info@eduwebsite.com</p>
+        <p>Phone: +91 98765 43210</p>
+        <p>Location: New Delhi, India</p>
+      </div>
+
+      <div class="newsletter">
+        <h3>Newsletter</h3>
+        <p>Subscribe to get the latest updates and resources.</p>
+        <form id="newsletterForm">
+          <input type="email" id="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+        <div class="footer-social">
+          <a href="#"><i>🌐</i></a>
+          <a href="#"><i>📘</i></a>
+          <a href="#"><i>🐦</i></a>
+          <a href="#"><i>📸</i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 EduWebsite. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("newsletterForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      if (email.includes("@")) {
+        alert("Thank you for subscribing!");
+        document.getElementById("email").value = "";
+      } else {
+        alert("Please enter a valid email address.");
+      }
+    });
+  // Back to top
+  const backToTopButton = document.getElementById("backToTop");
+  window.addEventListener("scroll", () => {
+    if (window.pageYOffset > 300) { backToTopButton.classList.add("visible"); }
+    else { backToTopButton.classList.remove("visible"); }
+  });
+  backToTopButton.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+  </script>
+</body>
+</html>

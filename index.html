@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn2Secure</title>
+<!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta name="description" content="A beginner-friendly educational site about cybersecurity and cybercrime with quizzes, tips, Indian cyber laws, and resources." />
+  <style>
+    body {
+      margin: 0;
+      font-family: Georgia;
+      background-color: #9CAF88;
+    }
+
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: saturate(140%) blur(8px);
+      background: #0a2342;
+      border-bottom: 1px solid #f8f7f8;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-content: space-between;
+      padding: 12px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      color: white;
+    }
+
+    .logo {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      color: white;
+    }
+
+    .menu {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      padding: 10px 12px;
+      border-radius: 12px;
+      color: white;
+    }
+
+    .menu a:hover {
+      background: var(--panel-2);
+      color: #f4a261;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      border: 1px solid rgba(246, 246, 246, 0.35);
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: var(--panel);
+      color: white;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--panel-2);
+    }
+
+    .primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border: none;
+    }
+
+    .primary:hover {
+      filter: brightness(1.1);
+    }
+
+    /* ---------- HERO SECTION WITH SAFETY + EMERGENCY ---------- */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 40px;
+      align-items: start;
+      padding: 40px;
+    }
+
+    .hero-right {
+      padding-left: 28px;
+      border-left: 4px solid #2B7A78; /* safety line color */
+    }
+
+    .emergency {
+      margin-top: 24px;
+      padding: 18px;
+      border-radius: 6px;
+      background: #fff7f7;
+      border-left: 6px solid #E94B35; /* emergency red */
+    }
+
+ /* ---------- GRAPH ---------- */
+    .icon-box {
+      display: inline-block;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 12px;
+      background: #0a2342;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+    .icon-box:hover {
+      transform: scale(1.1);
+    }
+    .icon-box i {
+      font-size: 60px;
+      color: #2dddfb;
+      margin-bottom: 10px;
+    }
+
+ /* ---------- GAMEBOX ---------- */
+   .game-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin: 30px auto;
+    }
+    .email {
+      background: #eef;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+    button {
+      margin: 8px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .safe { background: #2a9643; color: white; }
+    .safe:hover{background: #0c571e}
+    .phish { background: #dc3545; color: white; }
+    .phish:hover{background: #670e17}
+    .result {
+      font-size: 1.2rem;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+/* ---------- CRIME ---------- */
+ .crime-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .crime-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 220px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .crime-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  }
+
+  .crime-card img {
+    transition: transform 0.3s ease;
+  }
+
+  .crime-card:hover img {
+    transform: scale(1.15);
+  }
+
+  .crime-card h3 {
+    margin: 15px 0 10px;
+    color: #333;
+  }
+
+  .crime-card p {
+    font-size: 0.95rem;
+    color: #555;
+  }
+
+/* ---------- PASSWORD ---------- */
+  section.password-section {
+  padding: 40px 20px;
+  background: #9CAF88;
+  display: flex;
+  justify-content: center;  /* horizontal center */
+  align-items: center;      /* vertical center (optional) */
+}
+ /* green card container */
+    .pwd-container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .input {
+      padding: 10px;
+      font-size: 1rem;
+      margin-top: 10px;
+      width: 50%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .strength {
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    /* Progress Bar */
+    .meter {
+      width: 100%;
+      height: 15px;
+      background: #ddd;
+      border-radius: 8px;
+      margin: 10px auto;
+      overflow: hidden;
+    }
+    .fill {
+      height: 50%;
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+    /* Rules List */
+    ul {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+      margin-top: 20px;
+    }
+    li {
+      margin: 5px 0;
+      font-size: 1rem;
+    }
+
+    /* Generate Button */
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #0a2342;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #031225;
+    }
+
+    #generated {
+      margin-top: 15px;
+      font-family: monospace;
+      font-size: 1rem;
+      color: green;
+    }
+
+
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: #0a2342;
+      color: #f1f1f1;
+      padding: 40px 20px 10px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .footer-container h3 {
+      margin-bottom: 15px;
+      font-size: 18px;
+      border-left: 4px solid #f4a261;
+      padding-left: 8px;
+    }
+
+    .footer-container p,
+    .footer-container a,
+    .footer-container li {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #ddd;
+      text-decoration: none;
+    }
+
+    .footer-container a:hover {
+      color: #f4a261;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 8px;
+    }
+
+    .footer-social a {
+      margin-right: 12px;
+      font-size: 18px;
+      display: inline-block;
+      transition: transform 0.3s;
+    }
+
+    .footer-social a:hover {
+      transform: scale(1.2);
+      color: #f4a261;
+    }
+
+    .newsletter input[type="email"] {
+      padding: 10px;
+      width: 70%;
+      border: none;
+      border-radius: 4px 0 0 4px;
+    }
+
+    .newsletter button {
+      padding: 10px 15px;
+      border: none;
+      background: #f4a261;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 0 4px 4px 0;
+      transition: 0.3s;
+    }
+
+    .newsletter button:hover {
+      background: #e76f51;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid #444;
+      margin-top: 30px;
+      padding: 10px 0;
+      font-size: 13px;
+    }
+    .back-to-top {
+      position: fixed; bottom: 30px; right: 30px;
+      background: #0a2342; color: white;
+      width: 50px; height: 50px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      opacity: 0; transition: opacity 0.3s; z-index: 100;
+    }
+    .back-to-top.visible { opacity: 1; }
+    @media (max-width: 768px) {
+      .nav { flex-direction: column; align-items: flex-start; }
+      .menu { margin-top: 15px; flex-wrap: wrap; }
+      .crime-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <div class="brand" aria-label="CyberShield home">
+        <div class="logo" aria-hidden="true">🔐</div>
+        <a href="index.html"><span style="color: #2dddfb;">Learn2Secure</span></a>
+     
+      </div>
+      <nav class="menu" aria-label="Section links">
+        <a href="cybersec.html">Cybersecurity</a>
+        <a href="cybercri.html">Cybercrimes</a>
+        <a href="laws.html">Indian Laws</a>
+        <a href="quiz.html">Quizes</a>
+        <a href="report.html">Report</a>
+      </nav>
+      <div class="actions">
+        <button id="toggleTheme" class="btn" aria-pressed="false" title="Toggle dark/light">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-grid">
+    <div class="hero-left">
+      <h1>Learn to stay safe online — understand <span style="color:#002142;">cybersecurity</span> & <span style="color:#334216;">cybercrime</span>.</h1>
+      <p> <h2><b>"In the digital age, cybersecurity is our armor—and cybercrime is the war we never see coming."</h2></b></p>
+    </div>
+
+    <aside class="hero-right">
+      <div class="top-safety">
+        <h3>Top 5 Safety Tips</h3>
+        <ul>
+          <li>Use strong, unique passwords + a manager.</li>
+          <li>Turn on two-factor authentication.</li>
+          <li>Beware of links & attachments.</li>
+          <li>Keep devices and apps updated.</li>
+          <li>Backup important data regularly.</li>
+        </ul>
+      </div>
+
+      <div class="emergency">
+        <h4>Emergency?</h4>
+        <p>For Indian users, report incidents at <strong>cybercrime.gov.in</strong> or dial <strong>1930</strong> (Financial Cyber Fraud helpline).</p>
+      </div>
+    </aside>
+  </section>
+
+<section style="padding:50px; background:whitesmoke; color:#0a2342; text-align:center;">
+  <h2 style="font-size:2rem; margin-bottom:20px;">Cybercrime Awareness Stats</h2>
+  
+  <div style="display:flex; justify-content:center; gap:40px; flex-wrap:wrap;">
+    <div>
+      <h1 id="counter1">0</h1>
+      <p>Phishing Cases</p>
+    </div>
+    <div>
+      <h1 id="counter2">0</h1>
+      <p>Ransomware Attacks</p>
+    </div>
+    <div>
+      <h1 id="counter3">0</h1>
+      <p>Data Breaches</p>
+    </div>
+  </div>
+</section>
+<script>
+function animateCounter(id, end) {
+  let counter = document.getElementById(id);
+  let start = 0;
+  let speed = Math.floor(2000 / end);
+  let interval = setInterval(() => {
+    start++;
+    counter.textContent = start;
+    if (start >= end) clearInterval(interval);
+  }, speed);
+}
+animateCounter("counter1", 120);
+animateCounter("counter2", 75);
+animateCounter("counter3", 45);
+</script>
+
+<section>
+<!-- phishing game -->
+ <h1>🎯 Phishing Detector Game</h1>
+  <p><h2>Can you spot the fake email?</h2></p>
+
+  <div class="game-box">
+    <div class="email" id="emailBox">
+      Loading email...
+    </div>
+    <button class="safe" onclick="checkAnswer('safe')">✅ Safe</button>
+    <button class="phish" onclick="checkAnswer('phish')">❌ Phishing</button>
+    <div class="result" id="resultBox"></div>
+  </div>
+
+  <script>
+    const emails = [
+      { text: "Your bank account has been locked. Click here to verify your password.", answer: "phish" },
+      { text: "New login from Chrome on Windows. If this wasn’t you, reset your password.", answer: "safe" },
+      { text: "Congratulations! You won a free iPhone. Claim now by clicking this link.", answer: "phish" },
+      { text: "Your Google Drive storage is almost full. Buy more storage to continue syncing.", answer: "safe" },
+      { text: "URGENT: Update your Aadhaar details immediately or your account will be blocked.", answer: "phish" }
+    ];
+
+    let currentEmail = {};
+    const emailBox = document.getElementById("emailBox");
+    const resultBox = document.getElementById("resultBox");
+
+    function loadEmail() {
+      currentEmail = emails[Math.floor(Math.random() * emails.length)];
+      emailBox.textContent = currentEmail.text;
+      resultBox.textContent = "";
+    }
+
+    function checkAnswer(choice) {
+      if (choice === currentEmail.answer) {
+        resultBox.textContent = "✅ Correct! Good job.";
+        resultBox.style.color = "green";
+      } else {
+        resultBox.textContent = "❌ Oops! That was wrong.";
+        resultBox.style.color = "red";
+      }
+      setTimeout(loadEmail, 2500);
+    }
+
+    loadEmail(); // start the game
+  </script>
+</section>
+<!--crimes-->
+<section style="padding:50px; background:#f9f9f9; font-family:Arial; text-align:center;">
+  <h2 style="font-size:2rem; margin-bottom:30px;"> Common Types of Cybercrime</h2>
+  <div class="crime-container">   
+    <div class="crime-card">
+      <img src="https://img.icons8.com/color/96/phishing.png" alt="Phishing">
+      <h3>Phishing</h3>
+      <p>Fake emails/websites to steal login info.</p>
+    </div>
+
+    <div class="crime-card">
+      <img src="https://img.icons8.com/color/96/ransomware.png" alt="Ransomware">
+      <h3>Ransomware</h3>
+      <p>Malware locks files and demands ransom.</p>
+    </div>
+
+    <div class="crime-card">
+      <img src="https://img.icons8.com/fluency/96/hacker.png" alt="Hacking">
+      <h3>Hacking</h3>
+      <p>Unauthorized access to systems and data.</p>
+    </div>
+
+    <div class="crime-card">
+      <img src="https://img.icons8.com/color/96/identity-theft.png" alt="Identity Theft">
+      <h3>Identity Theft</h3>
+      <p>Stealing personal data for fraud.</p>
+    </div>
+  </div>
+</section>
+
+
+<!--checking password-->
+<section class="password-section">
+    <div class="pwd-container">
+    <h1>🔑 Password Strength Game</h1>
+    <p>Type a password to see how strong it is!</p>
+
+    <input type="password" id="password" class="input" placeholder="Enter password">
+    <div class="strength" id="strengthBox"></div>
+
+    <!-- Progress bar -->
+    <div class="meter"><div class="fill" id="fillBar"></div></div>
+
+    <!-- Checklist -->
+    <ul>
+      <li id="lengthRule">❌ At least 8 characters</li>
+      <li id="upperRule">❌ Contains uppercase letter</li>
+      <li id="numberRule">❌ Contains number</li>
+      <li id="symbolRule">❌ Contains special character</li>
+    </ul>
+
+    <!-- Generate button -->
+    <div>
+      <button onclick="generatePassword()">🔒 Generate Strong Password</button>
+      <p id="generated"></p>
+    </div>
+  </div>
+</section>
+
+  <script>
+    const passwordInput = document.getElementById("password");
+    const strengthBox = document.getElementById("strengthBox");
+    const fillBar = document.getElementById("fillBar");
+
+    const lengthRule = document.getElementById("lengthRule");
+    const upperRule = document.getElementById("upperRule");
+    const numberRule = document.getElementById("numberRule");
+    const symbolRule = document.getElementById("symbolRule");
+
+    passwordInput.addEventListener("input", () => {
+      const pwd = passwordInput.value;
+      let strength = "Weak ❌";
+      let color = "red";
+      let width = 25;
+
+      // Rules checklist
+      lengthRule.textContent = pwd.length >= 8 ? "✅ At least 8 characters" : "❌ At least 8 characters";
+      upperRule.textContent = /[A-Z]/.test(pwd) ? "✅ Contains uppercase letter" : "❌ Contains uppercase letter";
+      numberRule.textContent = /\d/.test(pwd) ? "✅ Contains number" : "❌ Contains number";
+      symbolRule.textContent = /[@$!%*?&]/.test(pwd) ? "✅ Contains special character" : "❌ Contains special character";
+
+      // Strength logic
+      if (pwd.length > 8 && /[A-Z]/.test(pwd) && /\d/.test(pwd) && /[@$!%*?&]/.test(pwd)) {
+        strength = "Strong ✅";
+        color = "green";
+        width = 100;
+      } else if (pwd.length > 6) {
+        strength = "Medium ⚠️";
+        color = "orange";
+        width = 60;
+      }
+
+      strengthBox.textContent = strength;
+      strengthBox.style.color = color;
+      fillBar.style.width = width + "%";
+      fillBar.style.background = color;
+    });
+
+    // Generate strong password
+    function generatePassword() {
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@$!%*?&";
+      let pwd = "";
+      for (let i = 0; i < 12; i++) {
+        pwd += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      document.getElementById("generated").textContent = "Suggested: " + pwd;
+    }
+
+</script>
+
+<!-- Why Cybersecurity Matters -->
+<section style="text-align:center; padding:40px 20px; background:white;">
+  <h1>Cybersecurity Awareness </h1>
+<div class="icon-box">
+    <i class="fas fa-lock"></i>
+    <p><span style="color: #2dddfb;">Strong Passwords</span></p>
+  </div>
+
+  <div class="icon-box">
+    <i class="fas fa-shield-alt"></i>
+    <p><span style="color: #2dddfb;">Network Protection</span></p>
+  </div>
+
+  <div class="icon-box">
+    <i class="fas fa-bug"></i>
+    <p><span style="color: #2dddfb;">Malware Awareness</span></p>
+  </div>
+
+  <div class="icon-box">
+    <i class="fas fa-fingerprint"></i>
+    <p><span style="color: #2dddfb;">Digital Identity</span></p>
+  </div>
+</section>
+
+<div class="back-to-top" id="backToTop" title="Back to top">↑</div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-about">
+        <h3>About Us</h3>
+        <p>We are dedicated to providing quality education resources and tools to help students and educators achieve their goals.</p>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#library">Library</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h3>Contact Info</h3>
+        <p>Email: info@eduwebsite.com</p>
+        <p>Phone: +91 98765 43210</p>
+        <p>Location: Mumbai, India</p>
+      </div>
+
+      <div class="newsletter">
+        <h3>Newsletter</h3>
+        <p>Subscribe to get the latest updates and resources.</p>
+        <form id="newsletterForm">
+          <input type="email" id="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+        <div class="footer-social">
+          <a href="#"><i>🌐</i></a>
+          <a href="#"><i>📘</i></a>
+          <a href="#"><i>🐦</i></a>
+          <a href="#"><i>📸</i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 EduWebsite. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("newsletterForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      if (email.includes("@")) {
+        alert("Thank you for subscribing!");
+        document.getElementById("email").value = "";
+      } else {
+        alert("Please enter a valid email address.");
+      }
+    });
+     // Back to top
+  const backToTopButton = document.getElementById("backToTop");
+  window.addEventListener("scroll", () => {
+    if (window.pageYOffset > 300) { backToTopButton.classList.add("visible"); }
+    else { backToTopButton.classList.remove("visible"); }
+  });
+  backToTopButton.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+  </script>
+  <script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js")
+    .then(() => console.log("Service Worker Registered"))
+    .catch(err => console.error("SW failed", err));
+}
+</script>
+</body>
+</html>

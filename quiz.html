@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn2Secure - Cybersecurity Quiz</title>
+    <style>
+        :root {
+            --accent: #2dddfb;
+            --accent-2: #f4a261;
+            --panel: rgba(255, 255, 255, 0.1);
+            --panel-2: rgba(255, 255, 255, 0.2);
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --dark-blue: #0a2342;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, serif;
+            background-color: #9CAF88;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: saturate(140%) blur(8px);
+            background: #0a2342;
+            border-bottom: 1px solid #f8f7f8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            justify-content: space-between;
+            padding: 12px 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 900;
+            color: white;
+        }
+
+        .logo {
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            color: white;
+        }
+
+        .menu {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .menu a {
+            padding: 10px 12px;
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .menu a:hover {
+            background: var(--panel-2);
+            color: #f4a261;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            border: 1px solid rgba(246, 246, 246, 0.35);
+            padding: 10px 14px;
+            border-radius: 12px;
+            background: var(--panel);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--panel-2);
+        }
+
+        .primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            border: none;
+        }
+
+        .primary:hover {
+            filter: brightness(1.1);
+        }
+
+        /* Quiz Welcome Page Styles */
+        .quiz-welcome {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            margin: 40px auto;
+            max-width: 800px;
+        }
+
+        .quiz-welcome h2 {
+            color: var(--dark-blue);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .quiz-welcome p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .graphic-container {
+            margin: 40px 0;
+            position: relative;
+            height: 200px;
+        }
+
+        .cyber-graphic {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #2dddfb, #f4a261);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .cyber-graphic::before {
+            content: "?";
+            font-size: 80px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .start-quiz-btn {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .start-quiz-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Quiz Container Styles */
+        .quiz-container {
+            display: none;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin: 40px auto;
+            max-width: 800px;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .question-count {
+            font-size: 1.2rem;
+            color: var(--dark-blue);
+            font-weight: bold;
+        }
+
+        .score-container {
+            background: var(--dark-blue);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .question-text {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--dark-blue);
+            line-height: 1.4;
+        }
+
+        .options-container {
+            display: grid;
+            grid-gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .option {
+            background: #f8f8f8;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .option:hover {
+            background: #e9f7fe;
+            border-color: var(--accent);
+        }
+
+        .option.selected {
+            background: #e9f7fe;
+            border-color: var(--accent);
+            font-weight: bold;
+        }
+
+        .quiz-controls {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .quiz-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .prev-btn {
+            background: #f8f8f8;
+        }
+
+        .next-btn {
+            background: var(--dark-blue);
+            color: white;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #0a2342);
+            color: white;
+        }
+
+        .quiz-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Results Section */
+        .results-container {
+            display: none;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin: 40px auto;
+            max-width: 800px;
+        }
+
+        .results-container h2 {
+            color: var(--dark-blue);
+            margin-bottom: 20px;
+        }
+
+        .score-display {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--accent-2);
+            margin: 20px 0;
+        }
+
+        .score-text {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .restart-quiz {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .restart-quiz:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            }
+        }
+
+        footer {
+            background: #0a2342;
+            color: #f1f1f1;
+            padding: 40px 20px 10px;
+            margin-top: 60px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer-container h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+            border-left: 4px solid #f4a261;
+            padding-left: 8px;
+        }
+
+        .footer-container p, 
+        .footer-container a, 
+        .footer-container li {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #ddd;
+            text-decoration: none;
+        }
+
+        .footer-container a:hover {
+            color: #f4a261;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-social a {
+            margin-right: 12px;
+            font-size: 18px;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .footer-social a:hover {
+            transform: scale(1.2);
+            color: #f4a261;
+        }
+
+        .newsletter input[type="email"] {
+            padding: 10px;
+            width: 70%;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .newsletter button {
+            padding: 10px 15px;
+            border: none;
+            background: #f4a261;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+            transition: 0.3s;
+        }
+
+        .newsletter button:hover {
+            background: #e76f51;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #444;
+            margin-top: 30px;
+            padding: 10px 0;
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .menu {
+                margin-top: 15px;
+                flex-wrap: wrap;
+            }
+            
+            .quiz-welcome h2 {
+                font-size: 2rem;
+            }
+            
+            .quiz-controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .quiz-btn {
+                width: 100%;
+            }
+        }
+            .back-to-top {
+      position: fixed; bottom: 30px; right: 30px;
+      background: #0a2342; color: white;
+      width: 50px; height: 50px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      opacity: 0; transition: opacity 0.3s; z-index: 100;
+    }
+    .back-to-top.visible { opacity: 1; }
+    @media (max-width: 768px) {
+      .nav { flex-direction: column; align-items: flex-start; }
+      .menu { margin-top: 15px; flex-wrap: wrap; }
+      .crime-grid { grid-template-columns: 1fr; }
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav" role="navigation" aria-label="Primary">
+            <div class="brand" aria-label="Learn2Secure home">
+                <div class="logo" aria-hidden="true">🔐</div>
+                <a href="index.html"><span style="color: #2dddfb;">Learn2Secure</span></a>
+
+            </div>
+            <nav class="menu" aria-label="Section links">
+        <a href="cybersec.html">Cybersecurity</a>
+        <a href="cybercri.html">Cybercrimes</a>
+        <a href="laws.html">Indian Laws</a>
+        <a href="quiz.html">Quizes</a>
+        <a href="report.html">Report</a>
+            </nav>
+            <div class="actions">
+                <button id="toggleTheme" class="btn" aria-pressed="false" title="Toggle dark/light">🌙</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Quiz Welcome Page -->
+        <!-- Two Welcome Sections -->
+  <div class="quiz-selection" id="quiz-selection">
+    <section id="welcome-cybersecurity" class="quiz-welcome">
+      <h2>Cybersecurity Quiz</h2>
+      <p>Test your knowledge about online safety, threats, and digital protection.</p>
+      <button class="start-quiz-btn" onclick="startQuiz('cybersecurity')">Start Quiz</button>
+    </section>
+
+    <section id="welcome-cybercrime" class="quiz-welcome">
+      <h2>Cybercrime Quiz</h2>
+      <p>Challenge yourself on laws, crimes, and awareness in cyberspace.</p>
+      <button class="start-quiz-btn" onclick="startQuiz('cybercrime')">Start Quiz</button>
+    </section>
+  </div>
+
+  <!-- Quiz Container -->
+  <section id="quiz-container" class="quiz-container">
+    <div class="quiz-header">
+      <div class="question-count">Question <span id="current-question">1</span> of <span id="total-questions">10</span></div>
+      <div class="score-container">Score: <span id="score">0</span></div>
+    </div>
+    <div id="question-text" class="question-text"></div>
+    <div id="options-container" class="options-container"></div>
+    <div class="quiz-controls">
+      <button class="quiz-btn prev-btn" id="prev-btn" onclick="previousQuestion()">Previous</button>
+      <button class="quiz-btn next-btn" id="next-btn" onclick="nextQuestion()">Next</button>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section id="results-container" class="results-container">
+    <h2>Quiz Completed!</h2>
+    <div class="score-display" id="final-score">0/10</div>
+    <div class="score-text" id="score-message"></div>
+    <button class="start-quiz-btn" onclick="restartQuiz()">Try Again</button>
+  </section>
+
+  <script>
+    // Cybersecurity Questions (10)
+    const cybersecurityQuestions = [
+      { question: "What is the most common goal of phishing attacks?",
+        options: ["Encrypt files and demand ransom", "Steal sensitive info", "Slow computer", "Show ads"], correct: 1 },
+      { question: "Which of these is the strongest password?",
+        options: ["password123", "P@ssw0rd!", "John1985", "Tr0ub4dor&3"], correct: 3 },
+      { question: "What does HTTPS indicate?",
+        options: ["Popularity", "Encrypted connection", "Government-owned", "Multimedia"], correct: 1 },
+      { question: "Which device is commonly used as a firewall?",
+        options: ["Router", "Switch", "Hub", "Printer"], correct: 0 },
+      { question: "What is two-factor authentication (2FA)?",
+        options: ["Using two devices", "Security via two layers like password + OTP", "Two passwords required", "Backup password"], correct: 1 },
+      { question: "Which is NOT a type of malware?",
+        options: ["Trojan", "Worm", "Spyware", "Firewall"], correct: 3 },
+      { question: "VPN helps users by?",
+        options: ["Boosting internet speed", "Hiding IP and encrypting traffic", "Removing viruses", "Installing firewalls"], correct: 1 },
+      { question: "What is social engineering in cybersecurity?",
+        options: ["Using robots", "Manipulating people to reveal confidential info", "Encrypting social media", "Hiring IT staff"], correct: 1 },
+      { question: "Which file type is generally more risky to open from unknown emails?",
+        options: [".txt", ".jpg", ".exe", ".pdf"], correct: 2 },
+      { question: "What is the principle of 'least privilege' in security?",
+        options: ["Users get maximum rights", "Users only get necessary access", "Admins share all access", "Guests can view all"], correct: 1 }
+    ];
+
+    // Cybercrime Questions (10)
+    const cybercrimeQuestions = [
+      { question: "Which of these is an example of identity theft?",
+        options: ["Using someone’s credit card without permission", "Hacking into a server", "Writing a blog", "Installing antivirus"], correct: 0 },
+      { question: "Cyberbullying is classified as?",
+        options: ["Cybercrime", "Software error", "Online marketing", "Data encryption"], correct: 0 },
+      { question: "Which Indian law addresses cybercrime?",
+        options: ["IT Act, 2000", "Copyright Act, 1957", "IPC 302", "GST Act"], correct: 0 },
+      { question: "Spreading false news online to damage reputation is called?",
+        options: ["Phishing", "Defamation", "Spoofing", "Hacking"], correct: 1 },
+      { question: "What is ransomware?",
+        options: ["Game software", "Malware demanding payment to unlock files", "Password tool", "Antivirus"], correct: 1 },
+      { question: "Which is NOT a cybercrime?",
+        options: ["Phishing", "Hacking", "Data theft", "Installing official updates"], correct: 3 },
+      { question: "What is the penalty for cyber terrorism under IT Act 2000?",
+        options: ["3 years", "Life imprisonment", "Fine only", "No penalty"], correct: 1 },
+      { question: "Sending obscene messages via email is punishable under?",
+        options: ["Section 66A IT Act", "Section 69 IPC", "Section 370 IPC", "RTI Act"], correct: 0 },
+      { question: "What is doxxing?",
+        options: ["Publishing private info online without consent", "Using a VPN", "Installing spyware", "Encrypting data"], correct: 0 },
+      { question: "Which agency investigates major cybercrimes in India?",
+        options: ["CBI", "FBI", "Interpol", "UNESCO"], correct: 0 }
+    ];
+
+    let currentQuiz = [];
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let userAnswers = [];
+
+    function startQuiz(type) {
+      currentQuiz = (type === 'cybersecurity') ? cybersecurityQuestions : cybercrimeQuestions;
+      document.getElementById('quiz-selection').style.display = 'none';
+      document.getElementById('quiz-container').style.display = 'block';
+      currentQuestionIndex = 0;
+      score = 0;
+      userAnswers = [];
+      document.getElementById('total-questions').textContent = currentQuiz.length;
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const q = currentQuiz[currentQuestionIndex];
+      document.getElementById('question-text').textContent = q.question;
+      const optionsContainer = document.getElementById('options-container');
+      optionsContainer.innerHTML = '';
+      q.options.forEach((opt, idx) => {
+        const div = document.createElement('div');
+        div.className = 'option';
+        if (userAnswers[currentQuestionIndex] === idx) div.classList.add('selected');
+        div.textContent = opt;
+        div.onclick = () => selectOption(idx);
+        optionsContainer.appendChild(div);
+      });
+      document.getElementById('current-question').textContent = currentQuestionIndex + 1;
+      document.getElementById('prev-btn').style.display = currentQuestionIndex === 0 ? 'none' : 'inline-block';
+      const nextBtn = document.getElementById('next-btn');
+      if (currentQuestionIndex === currentQuiz.length - 1) {
+        nextBtn.textContent = "Submit";
+        nextBtn.className = "quiz-btn submit-btn";
+      } else {
+        nextBtn.textContent = "Next";
+        nextBtn.className = "quiz-btn next-btn";
+      }
+    }
+
+    function selectOption(idx) {
+      userAnswers[currentQuestionIndex] = idx;
+      showQuestion();
+    }
+
+    function nextQuestion() {
+      if (currentQuestionIndex === currentQuiz.length - 1) {
+        calculateScore();
+        showResults();
+        return;
+      }
+      currentQuestionIndex++;
+      showQuestion();
+    }
+
+    function previousQuestion() {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        showQuestion();
+      }
+    }
+
+    function calculateScore() {
+      score = 0;
+      userAnswers.forEach((ans, i) => {
+        if (ans === currentQuiz[i].correct) score++;
+      });
+    }
+
+    function showResults() {
+      document.getElementById('quiz-container').style.display = 'none';
+      document.getElementById('results-container').style.display = 'block';
+      document.getElementById('final-score').textContent = `${score}/${currentQuiz.length}`;
+      document.getElementById('score-message').textContent = 
+        (score === currentQuiz.length) ? "Perfect! 🎉" : 
+        (score > currentQuiz.length * 0.6) ? "Good job!" : "Keep learning!";
+    }
+
+    function restartQuiz() {
+      document.getElementById('results-container').style.display = 'none';
+      const quizSel = document.getElementById('quiz-selection');
+      quizSel.style.display = 'flex';
+      quizSel.style.flexDirection = 'row';   // 🔥 force horizontal
+      quizSel.style.flexWrap = 'nowrap';     // 🔥 prevent stacking
+    }
+  </script>
+
+    </main>
+<div class="back-to-top" id="backToTop" title="Back to top">↑</div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <h3>About Us</h3>
+                <p>We are dedicated to providing quality education resources and tools to help students and educators achieve their goals.</p>
+            </div>
+    
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#library">Library</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-contact">
+                <h3>Contact Info</h3>
+                <p>Email: info@learn2secure.com</p>
+                <p>Phone: +91 98765 43210</p>
+                <p>Location: New Delhi, India</p>
+            </div>
+    
+            <div class="newsletter">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get the latest updates and resources.</p>
+                <form id="newsletterForm">
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+                <div class="footer-social">
+                    <a href="#" aria-label="Website">🌐</a>
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="Twitter">🐦</a>
+                    <a href="#" aria-label="Instagram">📸</a>
+                </div>
+            </div>
+        </div>
+    
+        <div class="footer-bottom">
+            <p>©️ 2025 Learn2Secure. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Quiz questions data
+        const quizQuestions = [
+            {
+                question: "What is the most common goal of phishing attacks?",
+                options: [
+                    "To encrypt your files and demand ransom",
+                    "To steal sensitive information like passwords and credit card numbers",
+                    "To slow down your computer performance",
+                    "To display unwanted advertisements"
+                ],
+                correct: 1
+            },
+            {
+                question: "Which of these is the strongest password?",
+                options: [
+                    "password123",
+                    "P@ssw0rd!",
+                    "John1985",
+                    "Tr0ub4dor&3"
+                ],
+                correct: 3
+            },
+            {
+                question: "What should you do if you receive a suspicious email asking for personal information?",
+                options: [
+                    "Reply with the requested information",
+                    "Click on links to verify the sender's identity",
+                    "Delete it without responding",
+                    "Forward it to all your contacts to warn them"
+                ],
+                correct: 2
+            },
+            {
+                question: "What does HTTPS in a website URL indicate?",
+                options: [
+                    "The website is highly popular",
+                    "The connection between your browser and the website is encrypted",
+                    "The website is government-owned",
+                    "The website contains multimedia content"
+                ],
+                correct: 1
+            },
+            {
+                question: "Why is it important to regularly update your software and apps?",
+                options: [
+                    "Updates usually include new features",
+                    "Software updates fix security vulnerabilities",
+                    "Updated apps run faster",
+                    "Older versions might stop working"
+                ],
+                correct: 1
+            },
+            {
+                question: "What is a firewall used for in cybersecurity?",
+                options: [
+                    "To store sensitive data securely",
+                    "To monitor and filter incoming and outgoing network traffic",
+                    "To encrypt all data on a device",
+                    "To create strong passwords automatically"
+                ],
+                correct: 1
+            },
+            {
+                question: "What is two-factor authentication (2FA)?",
+                options: [
+                    "Using two different passwords for one account",
+                    "Requiring two forms of identification to access an account",
+                    "Encrypting data with two different algorithms",
+                    "Running two antivirus programs simultaneously"
+                ],
+                correct: 1
+            },
+            {
+                question: "Which type of malware spreads by replicating itself across networks?",
+                options: [
+                    "Trojan",
+                    "Worm",
+                    "Spyware",
+                    "Adware"
+                ],
+                correct: 1
+            },
+            {
+                question: "What is the purpose of a VPN (Virtual Private Network)?",
+                options: [
+                    "To speed up your internet connection",
+                    "To create a secure connection over the internet",
+                    "To block advertisements on websites",
+                    "To scan your device for viruses"
+                ],
+                correct: 1
+            },
+            {
+                question: "What is social engineering in the context of cybersecurity?",
+                options: [
+                    "Building secure social media platforms",
+                    "Manipulating people into revealing sensitive information",
+                    "Encrypting social media communications",
+                    "Developing software for social networks"
+                ],
+                correct: 1
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let userAnswers = [];
+
+        // Initialize the quiz
+        function initializeQuiz() {
+            document.getElementById('total-questions').textContent = quizQuestions.length;
+            document.getElementById('current-question').textContent = currentQuestionIndex + 1;
+            showQuestion();
+        }
+
+        // Display current question
+        function showQuestion() {
+            const question = quizQuestions[currentQuestionIndex];
+            document.getElementById('question-text').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                if (userAnswers[currentQuestionIndex] === index) {
+                    optionElement.classList.add('selected');
+                }
+                optionElement.textContent = option;
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Update navigation buttons
+            document.getElementById('prev-btn').style.display = currentQuestionIndex === 0 ? 'none' : 'block';
+            
+            if (currentQuestionIndex === quizQuestions.length - 1) {
+                document.getElementById('next-btn').textContent = 'Submit';
+                document.getElementById('next-btn').classList.add('submit-btn');
+                document.getElementById('next-btn').classList.remove('next-btn');
+            } else {
+                document.getElementById('next-btn').textContent = 'Next';
+                document.getElementById('next-btn').classList.add('next-btn');
+                document.getElementById('next-btn').classList.remove('submit-btn');
+            }
+        }
+
+        // Select an option
+        function selectOption(optionIndex) {
+            userAnswers[currentQuestionIndex] = optionIndex;
+            showQuestion();
+        }
+
+        // Navigate to next question
+        function nextQuestion() {
+            if (currentQuestionIndex === quizQuestions.length - 1) {
+                calculateScore();
+                showResults();
+                return;
+            }
+            
+            currentQuestionIndex++;
+            document.getElementById('current-question').textContent = currentQuestionIndex + 1;
+            showQuestion();
+        }
+
+        // Navigate to previous question
+        function previousQuestion() {
+            currentQuestionIndex--;
+            document.getElementById('current-question').textContent = currentQuestionIndex + 1;
+            showQuestion();
+        }
+
+        // Calculate final score
+        function calculateScore() {
+            score = 0;
+            userAnswers.forEach((answer, index) => {
+                if (answer === quizQuestions[index].correct) {
+                    score++;
+                }
+            });
+        }
+
+        // Show results
+        function showResults() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('results-container').style.display = 'block';
+            
+            document.getElementById('final-score').textContent = `${score}/${quizQuestions.length}`;
+            
+            let message = '';
+            if (score === quizQuestions.length) {
+                message = 'Perfect! You are a cybersecurity expert!';
+            } else if (score >= quizQuestions.length * 0.7) {
+                message = 'Great job! You have good cybersecurity knowledge.';
+            } else if (score >= quizQuestions.length * 0.5) {
+                message = 'Good effort! Keep learning about cybersecurity.';
+            } else {
+                message = 'Keep learning to improve your cybersecurity knowledge!';
+            }
+            
+            document.getElementById('score-message').textContent = message;
+        }
+
+        // Start the quiz
+        function startQuiz() {
+            document.getElementById('quiz-welcome').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'block';
+            initializeQuiz();
+        }
+
+        // Restart the quiz
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            userAnswers = [];
+            document.getElementById('results-container').style.display = 'none';
+            document.getElementById('quiz-welcome').style.display = 'block';
+            document.getElementById('score').textContent = '0';
+        }
+
+        // Newsletter form validation
+        document.getElementById("newsletterForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const email = document.getElementById("email").value;
+            if (email.includes("@")) {
+                alert("Thank you for subscribing!");
+                document.getElementById("email").value = "";
+            } else {
+                alert("Please enter a valid email address.");
+            }
+        });
+
+        // Theme toggle functionality
+        const toggleThemeButton = document.getElementById("toggleTheme");
+        let darkMode = false;
+        
+        toggleThemeButton.addEventListener("click", () => {
+            darkMode = !darkMode;
+            if (darkMode) {
+                document.body.style.backgroundColor = "#1a1a2e";
+                document.body.style.color = "#f1f1f1";
+                toggleThemeButton.textContent = "☀️";
+                toggleThemeButton.setAttribute("aria-pressed", "true");
+            } else {
+                document.body.style.backgroundColor = "#FFD2B1";
+                document.body.style.color = "#333";
+                toggleThemeButton.textContent = "🌙";
+                toggleThemeButton.setAttribute("aria-pressed", "false");
+            }
+        });
+         // Back to top
+  const backToTopButton = document.getElementById("backToTop");
+  window.addEventListener("scroll", () => {
+    if (window.pageYOffset > 300) { backToTopButton.classList.add("visible"); }
+    else { backToTopButton.classList.remove("visible"); }
+  });
+  backToTopButton.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+    </script>
+</body>
+</html>

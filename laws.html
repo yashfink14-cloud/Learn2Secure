@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn2Secure</title>
+    <meta name="description" content="A beginner‑friendly educational site about cybersecurity and cybercrime with quizzes, tips, Indian cyber laws, and resources." />
+    <style>
+        /* Previous styles remain unchanged */
+        body {
+            margin: 0;
+            font-family: Georgia;
+            background-color: #9CAF88;
+        }
+        header{
+            position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(8px);
+            background:linear-gradient(180deg);
+            background: #0a2342;
+            border-bottom:1px solid #f8f7f8;
+        }
+        .nav{
+            display:flex;align-items:center;gap:16px;justify-content:space-between;padding:12px 0;
+        }
+        .brand{display:flex;align-items:center;gap:12px;font-weight:900;color:white}
+        .logo{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:radial-gradient(120% 120% at 10% 10%, var(--accent), var(--accent-2));box-shadow:var(--shadow);color:white}
+
+        .menu{display:flex;gap:14px;flex-wrap:wrap}
+        .menu a{padding:10px 12px;border-radius:12px;color:white}
+        .menu a:hover{background:var(--panel-2);color:#f4a261}
+
+        .actions{display:flex;gap:10px}
+        .btn{border:1px solid rgba(246, 246, 246, 0.35);padding:10px 14px;border-radius:12px;background:var(--panel);color:white;cursor:pointer}
+        .btn:hover{background:var(--panel-2)}
+
+        .primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));border:none}
+        .primary:hover{filter:brightness(1.1)}
+
+        /* Enhanced styles for Indian Laws section */
+        .laws-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        
+        .laws-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .laws-header h1 {
+            color: #0a2342;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .laws-header p {
+            color: #555;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .law-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+        
+        .law-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .law-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .law-icon {
+            width: 60px;
+            height: 60px;
+            background: #0a2342;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .law-icon span {
+            font-size: 24px;
+            color: white;
+        }
+        
+        .law-card h2 {
+            color: #0a2342;
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        
+        .law-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .law-text {
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .law-text h3 {
+            color: #e76f51;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .law-text ul {
+            padding-left: 20px;
+        }
+        
+        .law-text li {
+            margin-bottom: 8px;
+        }
+        
+        .law-graphic {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .graphic-container {
+            width: 100%;
+            max-width: 400px;
+            background: #f8f7f8;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .info-graphic {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .graphic-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+        
+        .graphic-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .graphic-icon {
+            width: 40px;
+            height: 40px;
+            background: #f4a261;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .graphic-icon span {
+            font-size: 18px;
+            color: white;
+        }
+        
+        .graphic-text {
+            font-size: 0.9rem;
+            color: #333;
+        }
+        
+        .penalty-scale {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .penalty-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .penalty-type {
+            font-weight: bold;
+            color: #0a2342;
+        }
+        
+        .penalty-amount {
+            color: #e76f51;
+        }
+        
+        /* New styles for additional graphics */
+        .timeline-container {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 30px 0;
+            padding: 20px 0;
+        }
+        
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #0a2342;
+            transform: translateY(-50%);
+        }
+        
+        .timeline-point {
+            position: relative;
+            width: 120px;
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: #f4a261;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            border: 3px solid #0a2342;
+        }
+        
+        .timeline-label {
+            font-size: 0.8rem;
+            color: #0a2342;
+            font-weight: bold;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #0a2342;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        .comparison-table th {
+            background-color: #0a2342;
+            color: white;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f8f7f8;
+        }
+        
+        .process-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .process-step {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: #0a2342;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .step-text {
+            flex: 1;
+        }
+        
+        .arrow {
+            margin-left: 15px;
+            color: #0a2342;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 900px) {
+            .law-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .law-graphic {
+                order: -1;
+            }
+            
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            
+            .timeline-container::before {
+                display: none;
+            }
+            
+            .timeline-point {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                text-align: left;
+            }
+            
+            .timeline-dot {
+                margin: 0 15px 0 0;
+            }
+        }
+        
+        footer {
+            background: #0a2342;
+            color: #f1f1f1;
+            padding: 40px 20px 10px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer-container h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+            border-left: 4px solid #f4a261;
+            padding-left: 8px;
+        }
+
+        .footer-container p, 
+        .footer-container a, 
+        .footer-container li {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #ddd;
+            text-decoration: none;
+        }
+
+        .footer-container a:hover {
+            color: #f4a261;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-social a {
+            margin-right: 12px;
+            font-size: 18px;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .footer-social a:hover {
+            transform: scale(1.2);
+            color: #f4a261;
+        }
+
+        .newsletter input[type="email"] {
+            padding: 10px;
+            width: 70%;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .newsletter button {
+            padding: 10px 15px;
+            border: none;
+            background: #f4a261;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+            transition: 0.3s;
+        }
+
+        .newsletter button:hover {
+            background: #e76f51;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #444;
+            margin-top: 30px;
+            padding: 10px 0;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav" role="navigation" aria-label="Primary">
+            <div class="brand" aria-label="CyberShield home">
+                <div class="logo" aria-hidden="true">🔐</div>
+                <a href="#home"><span style="color: #2dddfb;">Learn2Secure</span></a>
+                
+            </div>
+            <nav class="menu" aria-label="Section links">
+                <a href="cybersec.html">Cybersecurity</a>
+                <a href="cybercri.html">Cybercrimes</a>
+                <a href="laws.html">Indian Laws</a>
+                <a href="quiz.html">Quizes</a>
+                <a href="report.html">Report</a>
+            </nav>
+            <div class="actions">
+                <button id="toggleTheme" class="btn" aria-pressed="false" title="Toggle dark/light">🌙</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Indian Laws Section -->
+    <section id="laws" class="laws-container">
+        <div class="laws-header">
+            <h1>Indian Cyber Laws</h1>
+            <p>Understanding the legal framework that governs cyberspace in India and protects citizens from cybercrimes</p>
+        </div>
+        
+        <!-- IT Act, 2000 -->
+        <div class="law-card">
+            <div class="law-card-header">
+                <div class="law-icon">
+                    <span>📜</span>
+                </div>
+                <h2>Information Technology Act, 2000</h2>
+            </div>
+            
+            <div class="law-content">
+                <div class="law-text">
+                    <p>The Information Technology Act, 2000 is the primary law in India dealing with cybercrime and electronic commerce. It was amended in 2008 to address new cybercrimes and strengthen security measures.</p>
+                    
+                    <h3>Key Provisions:</h3>
+                    <ul>
+                        <li>Legal recognition of electronic records and digital signatures</li>
+                        <li>Defines cybercrimes and prescribes penalties</li>
+                        <li>Establishes Cyber Appellate Tribunal</li>
+                        <li>Addresses issues of data protection and privacy</li>
+                        <li>Provides legal framework for electronic governance</li>
+                    </ul>
+                    
+                    <h3>Important Sections:</h3>
+                    <ul>
+                        <li>Section 43: Penalty for damage to computer, computer system</li>
+                        <li>Section 66: Computer related offenses</li>
+                        <li>Section 66C: Identity theft</li>
+                        <li>Section 66D: Cheating by personation using computer resource</li>
+                        <li>Section 67: Publishing obscene information</li>
+                    </ul>
+                    
+                    <!-- New: IT Act Timeline -->
+                    <h3>Evolution of IT Act:</h3>
+                    <div class="timeline-container">
+                        <div class="timeline-point">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-label">2000</div>
+                        </div>
+                        <div class="timeline-point">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-label">2006</div>
+                        </div>
+                        <div class="timeline-point">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-label">2008</div>
+                        </div>
+                        <div class="timeline-point">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-label">2011</div>
+                        </div>
+                        <div class="timeline-point">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-label">2023</div>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.8rem; color: #666; text-align: center;">
+                        IT Act enacted → First amendment proposed → Major amendment passed → Rules framed → DPDPA enacted
+                    </div>
+                </div>
+                
+                <div class="law-graphic">
+                    <div class="graphic-container">
+                        <h3 style="text-align: center; color: #0a2342; margin-top: 0;">IT Act Coverage</h3>
+                        <div class="info-graphic">
+                            <div class="graphic-item">
+                                <div class="graphic-icon">
+                                    <span>🔒</span>
+                                </div>
+                                <div class="graphic-text">Digital Privacy Protection</div>
+                            </div>
+                            <div class="graphic-item">
+                                <div class="graphic-icon">
+                                    <span>💳</span>
+                                </div>
+                                <div class="graphic-text">E-Commerce Legitimacy</div>
+                            </div>
+                            <div class="graphic-item">
+                                <div class="graphic-icon">
+                                    <span>📧</span>
+                                </div>
+                                <div class="graphic-text">Electronic Records Validity</div>
+                            </div>
+                            <div class="graphic-item">
+                                <div class="graphic-icon">
+                                    <span>⚖️</span>
+                                </div>
+                                <div class="graphic-text">Cybercrime Penalties</div>
+                            </div>
+                        </div>
+                        
+                        <!-- New: Statistics about IT Act -->
+                        <h3 style="text-align: center; color: #0a2342; margin-top: 20px;">Impact Statistics</h3>
+                        <div class="stat-grid">
+                            <div class="stat-box">
+                                <div class="stat-number">80%</div>
+                                <div class="stat-label">E-transactions covered</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">65%</div>
+                                <div class="stat-label">Cybercrimes addressed</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">200+</div>
+                                <div class="stat-label">Cases decided monthly</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">₹500Cr+</div>
+                                <div class="stat-label">E-commerce enabled</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div>
+        </div>
+        
+        <!-- Indian Penal Code, 1860 -->
+        <div class="law-card">
+            <div class="law-card-header">
+                <div class="law-icon">
+                    <span>⚖️</span>
+                </div>
+                <h2>Indian Penal Code, 1860 (Relevant Sections)</h2>
+            </div>
+            
+            <div class="law-content">
+                <div class="law-text">
+                    <p>Several sections of the Indian Penal Code (IPC) have been adapted to address cybercrimes alongside the IT Act, providing additional legal recourse for victims of cyber offenses.</p>
+                    
+                    <h3>Relevant IPC Sections:</h3>
+                    <ul>
+                        <li>Section 419: Punishment for cheating by personation</li>
+                        <li>Section 420: Cheating and dishonestly inducing delivery of property</li>
+                        <li>Section 463: Forgery of electronic records</li>
+                        <li>Section 464: Making a false document</li>
+                        <li>Section 468: Forgery for purpose of cheating</li>
+                        <li>Section 469: Forgery for purpose of harming reputation</li>
+                        <li>Section 499: Defamation (applies to online defamation)</li>
+                        <li>Section 509: Word, gesture or act intended to insult the modesty of a woman</li>
+                    </ul>
+                    
+                    <h3>Application:</h3>
+                    <p>These IPC sections are invoked alongside IT Act provisions in many cybercrime cases, allowing for comprehensive legal action against offenders.</p>
+                    
+                    <!-- New: Comparison Table -->
+                    <h3>IT Act vs. IPC Application:</h3>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Cybercrime Type</th>
+                            <th>IT Act Section</th>
+                            <th>IPC Section</th>
+                        </tr>
+                        <tr>
+                            <td>Online Fraud</td>
+                            <td>66D</td>
+                            <td>420</td>
+                        </tr>
+                        <tr>
+                            <td>Identity Theft</td>
+                            <td>66C</td>
+                            <td>419</td>
+                        </tr>
+                        <tr>
+                            <td>Cyber Defamation</td>
+                            <td>67</td>
+                            <td>499, 500</td>
+                        </tr>
+                        <tr>
+                            <td>Forgery</td>
+                            <td>66</td>
+                            <td>463, 464, 468</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="law-graphic">
+                    <div class="graphic-container">
+                        <h3 style="text-align: center; color: #0a2342; margin-top: 0;">Common Cybercrimes & IPC Sections</h3>
+                        <div class="info-graphic">
+                            <div class="graphic-item">
+                                <div class="graphic-icon">
+                                    <span>🎭</span>
+                                </div>
+                                <div class="graphic-text">Online Impersonation (Sec 419)</div>
+                            </div>
+                            <div class="graphic-item">
+                                <div class="graphic-icon">
+                                    <span>🤥</span>
+                                </div>
+                                <div class="graphic-text">Cyber Defamation (Sec 499)</div>
+                            </div>
+                            <div class="graphic-item">
+                                <div class="graphic-icon">
+                                    <span>📝</span>
+                                </div>
+                                <div class="graphic-text">Document Forgery (Sec 463, 464)</div>
+                            </div>
+                            <div class="graphic-item">
+                                <div class="graphic-icon">
+                                    <span>🚫</span>
+                                </div>
+                                <div class="graphic-text">Online Harassment (Sec 509)</div>
+                            </div>
+                        </div>
+                        
+                        <!-- New: Statistics about IPC cyber cases -->
+                        <h3 style="text-align: center; color: #0a2342; margin-top: 20px;">IPC Cyber Cases (2022)</h3>
+                        <div class="stat-grid">
+                            <div class="stat-box">
+                                <div class="stat-number">42%</div>
+                                <div class="stat-label">Online fraud (Sec 420)</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">28%</div>
+                                <div class="stat-label">Defamation (Sec 499)</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">18%</div>
+                                <div class="stat-label">Impersonation (Sec 419)</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">12%</div>
+                                <div class="stat-label">Harassment (Sec 509)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Personal Data Protection Bill -->
+        <div class="law-card">
+            <div class="law-card-header">
+                <div class="law-icon">
+                    <span>🔏</span>
+                </div>
+                <h2>Digital Personal Data Protection Act, 2023</h2>
+            </div>
+            
+            <div class="law-content">
+                <div class="law-text">
+                    <p>The Digital Personal Data Protection Act, 2023 is a comprehensive legislation aimed at protecting personal data and privacy of individuals. It establishes a Data Protection Board for enforcement.</p>
+                    
+                    <h3>Key Features:</h3>
+                    <ul>
+                        <li>Regulates processing of digital personal data</li>
+                        <li>Establishes rights and duties of individuals (Data Principals)</li>
+                        <li>Specifies obligations of data fiduciaries (entities processing data)</li>
+                        <li>Provides for significant penalties for non-compliance</li>
+                        <li>Exempts certain categories of data processing for national security etc.</li>
+                    </ul>
+                    
+                    <h3>Individual Rights:</h3>
+                    <ul>
+                        <li>Right to access information about personal data processing</li>
+                        <li>Right to correction and erasure of personal data</li>
+                        <li>Right to grievance redressal</li>
+                        <li>Right to nominate another person to exercise rights in case of death or incapacity</li>
+                    </ul>
+                    
+                    <!-- New: Data Protection Process -->
+                    <h3>Data Protection Process:</h3>
+                    <div class="process-flow">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div class="step-text">Data Collection with consent</div>
+                            <div class="arrow">→</div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div class="step-text">Secure storage with encryption</div>
+                            <div class="arrow">→</div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-text">Limited processing for specific purpose</div>
+                            <div class="arrow">→</div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <div class="step-text">Right to access and correction</div>
+                            <div class="arrow">→</div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">5</div>
+                            <div class="step-text">Secure deletion after purpose fulfilled</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="law-graphic">
+                    <div class="graphic-container">
+                        <h3 style="text-align: center; color: #0a2342; margin-top: 0;">Data Protection Principles</h3>
+                        <div class="info-graphic">
+                            <div class="graphic-item">
+                                <div class="graphic-icon">
+                                    <span>👁️</span>
+                                </div>
+                                <div class="graphic-text">Consent-Based Processing</div>
+                            </div>
+                            <div class="graphic-item">
+                                <div class="graphic-icon">
+                                    <span>🎯</span>
+                                </div>
+                                <div class="graphic-text">Purpose Limitation</div>
+                            </div>
+                            <div class="graphic-item">
+                                <div class="graphic-icon">
+                                    <span>📊</span>
+                                </div>
+                                <div class="graphic-text">Data Minimization</div>
+                            </div>
+                            <div class="graphic-item">
+                                <div class="graphic-icon">
+                                    <span>🛡️</span>
+                                </div>
+                                <div class="graphic-text">Accountability & Security</div>
+                            </div>
+                        </div>
+                        
+                        <!-- New: Data Protection Statistics -->
+                        <h3 style="text-align: center; color: #0a2342; margin-top: 20px;">Data Protection Impact</h3>
+                        <div class="stat-grid">
+                            <div class="stat-box">
+                                <div class="stat-number">1.3B+</div>
+                                <div class="stat-label">Indians protected</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">10,000+</div>
+                                <div class="stat-label">Companies regulated</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">₹250Cr</div>
+                                <div class="stat-label">Max penalty per violation</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">2023</div>
+                                <div class="stat-label">Enactment year</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Penalties and Punishments -->
+        <div class="law-card">
+            <div class="law-card-header">
+                <div class="law-icon">
+                    <span>⚠️</span>
+                </div>
+                <h2>Penalties & Punishments</h2>
+            </div>
+            
+            <div class="law-content">
+                <div class="law-text">
+                    <p>Indian cyber laws prescribe various penalties and punishments for different types of cybercrimes, ranging from fines to imprisonment.</p>
+                    
+                    <h3>Common Cybercrime Penalties:</h3>
+                    <ul>
+                        <li><strong>Unauthorized access to computer systems:</strong> Imprisonment up to 3 years or fine up to ₹5 lakh</li>
+                        <li><strong>Identity theft:</strong> Imprisonment up to 3 years and fine up to ₹1 lakh</li>
+                        <li><strong>Cheating by personation:</strong> Imprisonment up to 3 years and fine up to ₹1 lakh</li>
+                        <li><strong>Cyber terrorism:</strong> Imprisonment up to life</li>
+                        <li><strong>Publishing obscene content:</strong> Imprisonment up to 5 years and fine up to ₹10 lakh</li>
+                        <li><strong>Data breach under DPDPA:</strong> Penalty up to ₹250 crore</li>
+                    </ul>
+                    
+                    <h3>Compensation:</h3>
+                    <p>Victims of cybercrimes can also claim compensation for damages under Section 43A of the IT Act for negligence in implementing security practices.</p>
+                    
+                    <!-- New: Reporting Process -->
+                    <h3>Reporting Cybercrime Process:</h3>
+                    <div class="process-flow">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div class="step-text">Document evidence (screenshots, emails)</div>
+                            <div class="arrow">→</div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div class="step-text">File complaint at cybercrime.gov.in</div>
+                            <div class="arrow">→</div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-text">Local police station registration</div>
+                            <div class="arrow">→</div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <div class="step-text">Investigation by cyber cell</div>
+                            <div class="arrow">→</div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">5</div>
+                            <div class="step-text">Legal proceedings and resolution</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="law-graphic">
+                    <div class="graphic-container">
+                        <h3 style="text-align: center; color: #0a2342; margin-top: 0;">Penalty Scale for Cybercrimes</h3>
+                        <div class="penalty-scale">
+                            <div class="penalty-item">
+                                <span class="penalty-type">Minor Offenses</span>
+                                <span class="penalty-amount">Fine up to ₹1L</span>
+                            </div>
+                            <div class="penalty-item">
+                                <span class="penalty-type">Moderate Offenses</span>
+                                <span class="penalty-amount">Fine up to ₹5L + 3Y imprisonment</span>
+                            </div>
+                            <div class="penalty-item">
+                                <span class="penalty-type">Serious Offenses</span>
+                                <span class="penalty-amount">Fine up to ₹10L + 5Y imprisonment</span>
+                            </div>
+                            <div class="penalty-item">
+                                <span class="penalty-type">Data Breaches</span>
+                                <span class="penalty-amount">Fine up to ₹250Cr</span>
+                            </div>
+                            <div class="penalty-item">
+                                <span class="penalty-type">Cyber Terrorism</span>
+                                <span class="penalty-amount">Imprisonment for life</span>
+                            </div>
+                        </div>
+                        
+                        <!-- New: Cybercrime Statistics -->
+                        <h3 style="text-align: center; color: #0a2342; margin-top: 20px;">2022 Cybercrime Statistics</h3>
+                        <div class="stat-grid">
+                            <div class="stat-box">
+                                <div class="stat-number">52,974</div>
+                                <div class="stat-label">Cases registered</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">32% ↑</div>
+                                <div class="stat-label">Yearly increase</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">18.4%</div>
+                                <div class="stat-label">Conviction rate</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">₹216Cr</div>
+                                <div class="stat-label">Financial losses</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- New: Additional Resources Card -->
+        <div class="law-card">
+            <div class="law-card-header">
+                <div class="law-icon">
+                    <span>📚</span>
+                </div>
+                <h2>Additional Resources & Reporting</h2>
+            </div>
+            
+            <div class="law-content">
+                <div class="law-text">
+                    <p>India has established several institutions and mechanisms to combat cybercrime and assist victims. Here are key resources available to citizens:</p>
+                    
+                    <h3>Cybercrime Reporting Portals:</h3>
+                    <ul>
+                        <li><strong>National Cyber Crime Reporting Portal:</strong> cybercrime.gov.in</li>
+                        <li><strong>Computer Emergency Response Team (CERT-In):</strong> cert-in.org.in</li>
+                        <li><strong>Cyber Crime Cells:</strong> Available in all states and major cities</li>
+                    </ul>
+                    
+                    <h3>Helplines & Support:</h3>
+                    <ul>
+                        <li><strong>National Helpline:</strong> 155260 (Cyber Crime)</li>
+                        <li><strong>Women Helpline:</strong> 1091</li>
+                        <li><strong>Cyber Fraud Helpline:</strong> 1930</li>
+                    </ul>
+                    
+                    <h3>Educational Resources:</h3>
+                    <ul>
+                        <li>NIC's Cyber Security Guidelines</li>
+                        <li>RBI's Cyber Security Framework for Banks</li>
+                        <li>MeitY's Information Security Best Practices</li>
+                    </ul>
+                </div>
+                
+                <div class="law-graphic">
+                    <div class="graphic-container">
+                        <h3 style="text-align: center; color: #0a2342; margin-top: 0;">Reporting Channels</h3>
+                        <div class="info-graphic">
+                            <div class="graphic-item">
+                                <div class="graphic-icon">
+                                    <span>🌐</span>
+                                </div>
+                                <div class="graphic-text">Online Portal (cybercrime.gov.in)</div>
+                            </div>
+                            <div class="graphic-item">
+                                <div class="graphic-icon">
+                                    <span>📱</span>
+                                </div>
+                                <div class="graphic-text">Helpline (155260)</div>
+                            </div>
+                            <div class="graphic-item">
+                                <div class="graphic-icon">
+                                    <span>🏢</span>
+                                </div>
+                                <div class="graphic-text">Local Police Station</div>
+                            </div>
+                            <div class="graphic-item">
+                                <div class="graphic-icon">
+                                    <span>📧</span>
+                                </div>
+                                <div class="graphic-text">Email (help@cybercrime.gov.in)</div>
+                            </div>
+                        </div>
+                        
+                        <h3 style="text-align: center; color: #0a2342; margin-top: 20px;">Response Timeline</h3>
+                        <div class="stat-grid">
+                            <div class="stat-box">
+                                <div class="stat-number">1H</div>
+                                <div class="stat-label">Initial response</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">24H</div>
+                                <div class="stat-label">FIR registration</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">7D</div>
+                                <div class="stat-label">Initial investigation</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">60D</div>
+                                <div class="stat-label">Chargesheet filing</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+    
+          <div class="footer-about">
+            <h3>About Us</h3>
+            <p>We are dedicated to providing quality education resources and tools to help students and educators achieve their goals.</p>
+          </div>
+    
+          <div class="footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+
+              <li><a href="#library">Library</a></li>
+              <li><a href="#blog">Blog</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+    
+          <div class="footer-contact">
+            <h3>Contact Info</h3>
+            <p>Email: info@eduwebsite.com</p>
+            <p>Phone: +91 98765 43210</p>
+            <p>Location: Mumbai, India</p>
+          </div>
+    
+          <div class="newsletter">
+            <h3>Newsletter</h3>
+            <p>Subscribe to get the latest updates and resources.</p>
+            <form id="newsletterForm">
+              <input type="email" id="email" placeholder="Enter your email" required>
+              <button type="submit">Subscribe</button>
+            </form>
+            <div class="footer-social">
+              <a href="#"><i>🌐</i></a>
+              <a href="#"><i>📘</i></a>
+              <a href="#"><i>🐦</i></a>
+              <a href="#"><i>📸</i></a>
+            </div>
+          </div>
+    
+        </div>
+    
+        <div class="footer-bottom">
+          <p>©️ 2025 EduWebsite. All Rights Reserved.</p>
+        </div>
+      </footer>
+      <script>
+        document.getElementById("newsletterForm").addEventListener("submit", function(e) {
+          e.preventDefault();
+          const email = document.getElementById("email").value;
+          if (email.includes("@")) {
+            alert("Thank you for subscribing!");
+            document.getElementById("email").value = "";
+          } else {
+            alert("Please enter a valid email address.");
+          }
+        });
+      </script>
+    
+</body>
+</html>

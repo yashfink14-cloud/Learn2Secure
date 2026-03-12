@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn2Secure – Cybersecurity</title>
+  <meta name="description" content="A beginner-friendly educational site about cybersecurity and cybercrime with quizzes, tips, Indian cyber laws, and resources." />
+  <style>
+    /* === Same CSS as before === */
+    :root {
+      --accent: #2dddfb;
+      --accent-2: #f4a261;
+      --panel: rgba(255, 255, 255, 0.1);
+      --panel-2: rgba(255, 255, 255, 0.2);
+  --shadow: 0 6px 20px rgba(0,0,0,0.1);
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --card-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height:1.6; background:linear-gradient(135deg,#9CAF88,#9CAF88); color:#333;}
+h2,h3,h4{color:#0a2342;}
+a{text-decoration:none;color:var(--accent-2);transition:0.3s;}
+a:hover{color:var(--accent);}
+
+/* Header */
+header{position:sticky;top:0;z-index:100;backdrop-filter:saturate(180%) blur(10px);background:rgba(10,35,66,0.95);box-shadow:var(--shadow);}
+.container{max-width:1200px;margin:0 auto;padding:0 20px;}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:12px 0;}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;color:white;}
+.logo{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:white;box-shadow:var(--shadow);font-size:20px;}
+.menu{display:flex;gap:15px;flex-wrap:wrap;}
+.menu a{padding:10px 14px;border-radius:12px;color:white;transition:0.3s;}
+.menu a:hover{background:rgba(255,255,255,0.1);color:var(--accent-2);}
+
+/* Main Section */
+.main-content{padding:50px 20px;}
+.section{margin-bottom:60px;background:var(--panel);border-radius:15px;padding:35px;box-shadow:var(--card-shadow);transition:transform 0.3s ease,box-shadow 0.3s ease;}
+.section:hover{transform:translateY(-5px);box-shadow:0 15px 25px rgba(0,0,0,0.2);}
+.section-title{border-left:5px solid var(--accent-2);padding-left:15px;margin-bottom:20px;font-size:28px;}
+
+/* Crime Cards */
+.crime-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:25px;margin-top:30px;}
+.crime-card{background:white;border-radius:12px;overflow:hidden;box-shadow:var(--card-shadow);transition:transform 0.3s ease,box-shadow 0.3s ease;}
+.crime-card:hover{transform:translateY(-8px);box-shadow:0 15px 25px rgba(0,0,0,0.2);}
+.crime-card-header{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:white;padding:15px;display:flex;align-items:center;gap:10px;font-weight:bold;font-size:1.1rem;}
+.crime-card-body{padding:20px;}
+.prevention-tips{background:#e0f7ff;border-left:5px solid var(--accent);padding:15px;margin-top:15px;border-radius:8px;transition:background 0.3s;}
+.prevention-tips:hover{background:#ccf0ff;}
+
+/* Slideshow */
+.slideshow-container{max-width:700px;margin:40px auto;border-radius:15px;overflow:hidden;box-shadow:var(--card-shadow);position:relative;background:white;}
+.slide{display:none;padding:30px;animation:fade 1s ease-in-out;}
+@keyframes fade{from{opacity:0;}to{opacity:1;}}
+.slide h3{margin-bottom:10px;}
+.dots{text-align:center;padding:15px 0;}
+.dot{height:12px;width:12px;margin:0 6px;background:var(--accent-2);border-radius:50%;display:inline-block;cursor:pointer;opacity:0.5;transition:0.3s;}
+.dot.active{opacity:1;transform:scale(1.2);}
+
+
+
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      background-color: #9CAF88;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: saturate(140%) blur(8px);
+      background: #0a2342;
+      border-bottom: 1px solid #f8f7f8;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-content: space-between;
+      padding: 12px 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      color: white;
+    }
+    .logo {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      color: white;
+    }
+    .menu {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .menu a {
+      padding: 10px 12px;
+      border-radius: 12px;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .menu a:hover {
+      background: var(--panel-2);
+      color: #f4a261;
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+    }
+    .btn {
+      border: 1px solid rgba(246, 246, 246, 0.35);
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: var(--panel);
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn:hover { background: var(--panel-2); }
+    .primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border: none;
+    }
+    .primary:hover { filter: brightness(1.1); }
+
+    .main-content { padding: 40px 20px; }
+    .section {
+      margin-bottom: 60px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+    .section-title {
+      color: #0a2342;
+      border-left: 5px solid #f4a261;
+      padding-left: 15px;
+      margin-top: 0;
+    }
+    .crime-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+    .crime-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+    .crime-card:hover { transform: translateY(-5px); }
+    .crime-card-header {
+      background: #0a2342;
+      color: white;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .crime-card-body { padding: 20px; }
+    .crime-card h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+    .prevention-tips {
+      background: #e9f7fe;
+      border-left: 4px solid #2dddfb;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .prevention-tips h4 {
+      margin-top: 0;
+      color: #0a2342;
+    }
+    .slideshow-container {
+     max-width: 600px;
+     margin: auto;
+     background-color: #fff;
+     border-radius: 12px;
+     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+     overflow: hidden;
+     position: relative;
+    }
+
+    .slide {
+     display: none;
+     padding: 30px;
+     color: #3A3A3A;
+    }
+
+    .slide h3 {
+     color: #0A2342;
+     margin-bottom: 10px;
+    }
+
+    .slide a {
+     color: #C2B280;
+     text-decoration: none;
+     font-weight: bold;
+    }
+
+    .dots {
+     text-align: center;
+     padding: 15px 0;
+     background-color: #F5F0E6;
+    }
+
+    .dot {
+     height: 12px;
+     width: 12px;
+     margin: 0 6px;
+     background-color: #C2B280;
+     border-radius: 50%;
+     display: inline-block;
+     cursor: pointer;
+     opacity: 0.5;
+     transition: opacity 0.3s ease;
+    }
+
+    .dot.active {
+     opacity: 1;
+    }
+    footer {
+      background: #0a2342;
+      color: white;
+      padding: 40px 20px 10px;
+    }
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .footer-container h3 {
+      margin-bottom: 15px;
+      font-size: 18px;
+      border-left: 4px solid #f4a261;
+      padding-left: 8px;
+    }
+    .footer-container p,
+    .footer-container a,
+    .footer-container li {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #ddd;
+      text-decoration: none;
+    }
+    .footer-container a:hover { color: #f4a261; }
+    .footer-links ul { list-style: none; padding: 0; }
+    .footer-links li { margin-bottom: 8px; }
+    .footer-social a {
+      margin-right: 12px;
+      font-size: 18px;
+      display: inline-block;
+      transition: transform 0.3s;
+    }
+    .footer-social a:hover { transform: scale(1.2); color: #f4a261; }
+    .newsletter input[type="email"] {
+      padding: 10px; width: 70%;
+      border: none; border-radius: 4px 0 0 4px;
+    }
+    .newsletter button {
+      padding: 10px 15px; border: none;
+      background: #f4a261; color: #fff;
+      cursor: pointer; border-radius: 0 4px 4px 0;
+      transition: 0.3s;
+    }
+    .newsletter button:hover { background: #e76f51; }
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid #444;
+      margin-top: 30px;
+      padding: 10px 0;
+      font-size: 13px;
+    }
+    .back-to-top {
+      position: fixed; bottom: 30px; right: 30px;
+      background: #0a2342; color: white;
+      width: 50px; height: 50px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      opacity: 0; transition: opacity 0.3s; z-index: 100;
+    }
+    .back-to-top.visible { opacity: 1; }
+    @media (max-width: 768px) {
+      .nav { flex-direction: column; align-items: flex-start; }
+      .menu { margin-top: 15px; flex-wrap: wrap; }
+      .crime-grid { grid-template-columns: 1fr; }
+    }
+    .quiz-button {
+      color: #3A3A3A;
+      background-color: #F5F0E6;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 6px;
+    }
+
+  </style>
+</head>
+<body>
+ <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <div class="brand" aria-label="CyberShield home">
+        <div class="logo" aria-hidden="true">🔐</div>
+        <a href="index.html"><span style="color: #2dddfb;">Learn2Secure</span></a>
+        
+      </div>
+      <nav class="menu" aria-label="Section links">
+        <a href="cybersec.html">Cybersecurity</a>
+        <a href="cybercri.html">Cybercrimes</a>
+        <a href="laws.html">Indian Laws</a>
+        <a href="quiz.html">Quizes</a>
+        <a href="report.html">Report</a>
+      </nav>
+      <div class="actions">
+        <button id="toggleTheme" class="btn" aria-pressed="false" title="Toggle dark/light">🌙</button>
+      </div>
+    </div>
+  </header>
+
+<section>
+<main class="container main-content">
+  <!-- Cybersecurity Page -->
+  <section id="security" class="section">
+    <h2 class="section-title">Cybersecurity: Protecting Yourself and Organizations</h2>
+    <p>Cybersecurity is the practice of protecting devices, networks, and data from cyber threats. It includes multiple areas and best practices. Explore the cards below to learn more.</p>
+
+    <div class="crime-grid">
+      <!-- Network Security -->
+      <div class="crime-card">
+        <div class="crime-card-header"><span>🌐</span><h3><span style="color:white">Network Security</span></h3></div>
+        <div class="crime-card-body">
+          <p>Protects networks from unauthorized access, malware, and data theft using firewalls, VPNs, intrusion detection, and encryption.</p>
+          <div class="prevention-tips">
+            <h4>Key Measures</h4>
+            <ul>
+              <li>Firewalls & VPNs</li>
+              <li>Intrusion Detection & Prevention Systems</li>
+              <li>Strong Authentication & Regular Patching</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Security -->
+      <div class="crime-card">
+        <div class="crime-card-header"><span>🔐</span></span><h3><span style="color:white">Data Security</span></h3></div>
+        <div class="crime-card-body">
+          <p>Ensures confidentiality, integrity, and availability of data throughout its lifecycle. Protects personal data, financial info, and intellectual property.</p>
+          <div class="prevention-tips">
+            <h4>Key Measures</h4>
+            <ul>
+              <li>Encryption & Access Control</li>
+              <li>Regular Backups & Authentication</li>
+              <li>Employee Security Awareness</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Endpoint Security -->
+      <div class="crime-card">
+        <div class="crime-card-header"><span>📱</span><h3><span style="color:white">Endpoint Security</span></h3></div>
+        <div class="crime-card-body">
+          <p>Secures laptops, phones, servers, and IoT devices from malware, ransomware, and phishing to prevent network breaches.</p>
+          <div class="prevention-tips">
+            <h4>Best Practices</h4>
+            <ul>
+              <li>Antivirus & Firewalls</li>
+              <li>Multi-Factor Authentication</li>
+              <li>Patch & Update All Systems</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cloud Security -->
+      <div class="crime-card">
+        <div class="crime-card-header"><span>☁️</span><h3><span style="color:white">Cloud Security</span></h3></div>
+        <div class="crime-card-body">
+          <p>Protects cloud-based services and data from breaches, leaks, and theft through encryption, identity management, and secure configuration.</p>
+          <div class="prevention-tips">
+            <h4>Tips</h4>
+            <ul>
+              <li>Use strong access controls</li>
+              <li>Enable data encryption at rest & in transit</li>
+              <li>Review cloud security policies regularly</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- IoT Security -->
+      <div class="crime-card">
+        <div class="crime-card-header"><span>🔗</span><h3><span style="color:white">IoT Security</span></h3></div>
+        <div class="crime-card-body">
+          <p>Safeguards connected devices from unauthorized access and botnets. Example: The Mirai botnet hijacked insecure IoT devices for DDoS attacks.</p>
+          <div class="prevention-tips">
+            <h4>Why It Matters</h4>
+            <ul>
+              <li>Protect sensitive data collected by devices</li>
+              <li>Prevent unauthorized remote control</li>
+              <li>Defend critical infrastructure</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Operational Security -->
+      <div class="crime-card">
+        <div class="crime-card-header"><span>👥</span><h3><span style="color:white">Operational Security (OpSec)</span></h3></div>
+        <div class="crime-card-body">
+          <p>Focuses on protecting sensitive info through policies, training, and monitoring to prevent leaks or social engineering attacks.</p>
+          <div class="prevention-tips">
+            <h4>Tips</h4>
+            <ul>
+              <li>Need-to-Know Access</li>
+              <li>Employee Training on Phishing</li>
+              <li>Monitor Insider Activity</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- InfoSec vs Info Assurance -->
+      <div class="crime-card">
+        <div class="crime-card-header"><span>📝</span><h3><span style="color:white">Information Security vs. Information Assurance</span></h3></div>
+        <div class="crime-card-body">
+          <p>Information Security protects all forms of information from modification or destruction. Information Assurance manages risks to ensure data stays confidential and trustworthy.</p>
+        </div>
+      </div>
+    </div>
+</sction>
+   <section>
+    <h2 style="text-align: center; color: #0A2342; font-family: 'Segoe UI', sans-serif; margin-bottom: 20px;">
+  Case Studies
+</h2>
+    <div class="slideshow-container">
+  <div class="slide">
+    <h3>Colonial Pipeline (2021)</h3>
+    <p>A ransomware attack via a compromised VPN account without MFA. Highlights the need for strong endpoint security and multi-factor authentication.</p>
+    <a href="https://www.cisa.gov/news-events/news/colonial-pipeline-ransomware-attack" target="_blank">Read Full Case</a>
+  </div>
+  <div class="slide">
+    <h3>Equifax Data Breach (2017)</h3>
+    <p>Personal data of 147 million people exposed due to unpatched software. Emphasizes the importance of timely updates and vulnerability management.</p>
+    <a href="https://www.ftc.gov/enforcement/cases-proceedings/172-3203/equifax-inc" target="_blank">Read Full Case</a>
+  </div>
+  <div class="slide">
+    <h3>Target POS Malware Attack (2013)</h3>
+    <p>Attackers accessed customer credit card data through a third-party HVAC vendor. Shows the need for vendor risk management and network segmentation.</p>
+    <a href="https://www.csoonline.com/article/2130877/the-target-breach-by-the-numbers.html" target="_blank">Read Full Case</a>
+  </div>
+</div>
+
+<div class="dots">
+  <span class="dot" onclick="showSlide(0)"></span>
+  <span class="dot" onclick="showSlide(1)"></span>
+  <span class="dot" onclick="showSlide(2)"></span>
+</div>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.display = i === index ? 'block' : 'none';
+      dots[i].classList.toggle('active', i === index);
+    });
+    currentSlide = index;
+  }
+
+  function autoSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  showSlide(currentSlide);
+  setInterval(autoSlide, 5000); // Change slide every 5 seconds
+</script>
+</section>
+
+    <h3>Best Practices for Individuals & Organizations</h3>
+    <div class="prevention-tips">
+      <ul>
+        <li>Use strong, unique passwords and a password manager</li>
+        <li>Enable Multi-Factor Authentication on all accounts</li>
+        <li>Keep all software and devices updated</li>
+        <li>Back up important data regularly</li>
+        <li>Be cautious with links and attachments (phishing awareness)</li>
+        <li>Use VPN on public Wi-Fi</li>
+        <li>Provide regular security training to employees</li>
+      </ul>
+    </div>
+
+    <!-- Small Quiz Interactivity -->
+    <h3>Quick Cybersecurity Quiz</h3>
+    <p>Test your knowledge:</p>
+    <button style="color: #3A3A3A; background-color: #F5F0E6; padding: 10px 20px; border-radius: 6px; font-weight: 500;" button onclick="checkAnswer(1)" class="btn">
+  What does MFA stand for?
+</button>
+    <button style="color: #3A3A3A; background-color: #F5F0E6; padding: 10px 20px; border-radius: 6px; font-weight: 500;" button onclick="checkAnswer(2)" class="btn">
+What is a botnet?</button>
+    <p id="quizResult" style="font-weight:bold; color:#0a2342;"></p>
+  </section>
+</main>
+
+<div class="back-to-top" id="backToTop" title="Back to top">↑</div>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-about">
+      <h3><span style="color:white">About Us</span></h3>
+      <p>We provide quality education resources and tools to help students and educators achieve their goals.</p>
+    </div>
+    <div class="footer-links">
+      <h3><span style="color:white">Quick Links</span></h3>
+      <ul>
+        <li><a href="#library">Library</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h3><span style="color:white">Contact Info</span></h3>
+      <p>Email: info@learn2secure.com</p>
+      <p>Phone: +91 98765 43210</p>
+      <p>Location: Mumbai, India</p>
+    </div>
+    <div class="newsletter">
+      <h3><span style="color:white">Newsletter</span></h3>
+      <p>Subscribe to get the latest updates and resources.</p>
+      <form id="newsletterForm">
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <div class="footer-social">
+        <a href="#" aria-label="Website">🌐</a>
+        <a href="#" aria-label="Facebook">📘</a>
+        <a href="#" aria-label="Twitter">🐦</a>
+        <a href="#" aria-label="Instagram">📸</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>©️ 2025 EduWebsite. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Newsletter
+  document.getElementById("newsletterForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = document.getElementById("email").value;
+    if (email.includes("@")) {
+      alert("Thank you for subscribing!");
+      document.getElementById("email").value = "";
+    } else {
+      alert("Please enter a valid email address.");
+    }
+  });
+  // Back to top
+  const backToTopButton = document.getElementById("backToTop");
+  window.addEventListener("scroll", () => {
+    if (window.pageYOffset > 300) { backToTopButton.classList.add("visible"); }
+    else { backToTopButton.classList.remove("visible"); }
+  });
+  backToTopButton.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+  // Quiz answers
+  function checkAnswer(q){
+    let msg="";
+    if(q===1){ msg="MFA = Multi-Factor Authentication, an extra security step beyond passwords."; }
+    if(q===2){ msg="A botnet is a network of infected devices secretly controlled to perform large-scale attacks."; }
+    document.getElementById("quizResult").textContent=msg;
+  }
+</script>
+</body>
+</html>
